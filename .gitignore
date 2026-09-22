@@ -1,0 +1,8 @@
+bin/
+obj/
+*.user
+regen.sh
+openapi.json
+artifacts/
+docs/
+.kiota.log
