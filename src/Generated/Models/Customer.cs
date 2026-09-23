@@ -24,13 +24,13 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #endif
         /// <summary>The bannedAt property</summary>
         public DateTimeOffset? BannedAt { get; set; }
-        /// <summary>The billingDetails property</summary>
+        /// <summary>The billing property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::HypeLabs.Connect.Sdk.Generated.Models.Customer_billingDetails? BillingDetails { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling? Billing { get; set; }
 #nullable restore
 #else
-        public global::HypeLabs.Connect.Sdk.Generated.Models.Customer_billingDetails BillingDetails { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling Billing { get; set; }
 #endif
         /// <summary>The countryCode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -159,7 +159,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             {
                 { "avatarUrl", n => { AvatarUrl = n.GetStringValue(); } },
                 { "bannedAt", n => { BannedAt = n.GetDateTimeOffsetValue(); } },
-                { "billingDetails", n => { BillingDetails = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Customer_billingDetails>(global::HypeLabs.Connect.Sdk.Generated.Models.Customer_billingDetails.CreateFromDiscriminatorValue); } },
+                { "billing", n => { Billing = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling>(global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling.CreateFromDiscriminatorValue); } },
                 { "countryCode", n => { CountryCode = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
@@ -188,7 +188,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("avatarUrl", AvatarUrl);
             writer.WriteDateTimeOffsetValue("bannedAt", BannedAt);
-            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Customer_billingDetails>("billingDetails", BillingDetails);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling>("billing", Billing);
             writer.WriteStringValue("countryCode", CountryCode);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("email", Email);

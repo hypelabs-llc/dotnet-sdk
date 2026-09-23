@@ -14,13 +14,13 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The billingDetails property</summary>
+        /// <summary>The billing property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::HypeLabs.Connect.Sdk.Generated.Models.CreateCustomerRequest_billingDetails? BillingDetails { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling? Billing { get; set; }
 #nullable restore
 #else
-        public global::HypeLabs.Connect.Sdk.Generated.Models.CreateCustomerRequest_billingDetails BillingDetails { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling Billing { get; set; }
 #endif
         /// <summary>The displayName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -103,7 +103,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "billingDetails", n => { BillingDetails = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CreateCustomerRequest_billingDetails>(global::HypeLabs.Connect.Sdk.Generated.Models.CreateCustomerRequest_billingDetails.CreateFromDiscriminatorValue); } },
+                { "billing", n => { Billing = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling>(global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling.CreateFromDiscriminatorValue); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "externalId", n => { ExternalId = n.GetStringValue(); } },
@@ -120,7 +120,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CreateCustomerRequest_billingDetails>("billingDetails", BillingDetails);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling>("billing", Billing);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("email", Email);
             writer.WriteStringValue("externalId", ExternalId);
