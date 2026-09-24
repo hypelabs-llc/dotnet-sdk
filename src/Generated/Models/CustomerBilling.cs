@@ -56,6 +56,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string PostalCode { get; set; }
 #endif
+        /// <summary>The registrationNumber property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RegistrationNumber { get; set; }
+#nullable restore
+#else
+        public string RegistrationNumber { get; set; }
+#endif
         /// <summary>The taxId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -95,6 +103,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "country", n => { Country = n.GetStringValue(); } },
                 { "isCompany", n => { IsCompany = n.GetBoolValue(); } },
                 { "postalCode", n => { PostalCode = n.GetStringValue(); } },
+                { "registrationNumber", n => { RegistrationNumber = n.GetStringValue(); } },
                 { "taxId", n => { TaxId = n.GetStringValue(); } },
             };
         }
@@ -111,6 +120,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteStringValue("country", Country);
             writer.WriteBoolValue("isCompany", IsCompany);
             writer.WriteStringValue("postalCode", PostalCode);
+            writer.WriteStringValue("registrationNumber", RegistrationNumber);
             writer.WriteStringValue("taxId", TaxId);
             writer.WriteAdditionalData(AdditionalData);
         }
