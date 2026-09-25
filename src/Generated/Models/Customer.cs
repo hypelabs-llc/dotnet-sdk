@@ -78,6 +78,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public Guid? Id { get; set; }
         /// <summary>The isActive property</summary>
         public bool? IsActive { get; set; }
+        /// <summary>The isRegisteredToday property</summary>
+        public bool? IsRegisteredToday { get; set; }
         /// <summary>The kyc property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -168,6 +170,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "externalLogins", n => { ExternalLogins = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Customer_externalLogins>(global::HypeLabs.Connect.Sdk.Generated.Models.Customer_externalLogins.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "isActive", n => { IsActive = n.GetBoolValue(); } },
+                { "isRegisteredToday", n => { IsRegisteredToday = n.GetBoolValue(); } },
                 { "kyc", n => { Kyc = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerKyc>(global::HypeLabs.Connect.Sdk.Generated.Models.CustomerKyc.CreateFromDiscriminatorValue); } },
                 { "lastLoginAt", n => { LastLoginAt = n.GetDateTimeOffsetValue(); } },
                 { "locale", n => { Locale = n.GetStringValue(); } },
@@ -197,6 +200,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Customer_externalLogins>("externalLogins", ExternalLogins);
             writer.WriteGuidValue("id", Id);
             writer.WriteBoolValue("isActive", IsActive);
+            writer.WriteBoolValue("isRegisteredToday", IsRegisteredToday);
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerKyc>("kyc", Kyc);
             writer.WriteDateTimeOffsetValue("lastLoginAt", LastLoginAt);
             writer.WriteStringValue("locale", Locale);
