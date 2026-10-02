@@ -46,6 +46,38 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ExternalId { get; set; }
 #endif
+        /// <summary>The externalLogins property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins? ExternalLogins { get; set; }
+#nullable restore
+#else
+        public global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins ExternalLogins { get; set; }
+#endif
+        /// <summary>The locale property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Locale { get; set; }
+#nullable restore
+#else
+        public string Locale { get; set; }
+#endif
+        /// <summary>The phoneNumber property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PhoneNumber { get; set; }
+#nullable restore
+#else
+        public string PhoneNumber { get; set; }
+#endif
+        /// <summary>The pushNotificationsToken property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? PushNotificationsToken { get; set; }
+#nullable restore
+#else
+        public string PushNotificationsToken { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest"/> and sets the default values.
         /// </summary>
@@ -75,6 +107,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "externalId", n => { ExternalId = n.GetStringValue(); } },
+                { "externalLogins", n => { ExternalLogins = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins>(global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins.CreateFromDiscriminatorValue); } },
+                { "locale", n => { Locale = n.GetStringValue(); } },
+                { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
+                { "pushNotificationsToken", n => { PushNotificationsToken = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -88,6 +124,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("email", Email);
             writer.WriteStringValue("externalId", ExternalId);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins>("externalLogins", ExternalLogins);
+            writer.WriteStringValue("locale", Locale);
+            writer.WriteStringValue("phoneNumber", PhoneNumber);
+            writer.WriteStringValue("pushNotificationsToken", PushNotificationsToken);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -9,37 +9,27 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class UpdateOrganizationPricingRequest : IAdditionalDataHolder, IParsable
+    public partial class UpdateCustomerRequest_externalLogins : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The amount property</summary>
-        public double? Amount { get; set; }
-        /// <summary>The disabled property</summary>
-        public bool? Disabled { get; set; }
-        /// <summary>The ispId property</summary>
-        public Guid? IspId { get; set; }
-        /// <summary>The locationId property</summary>
-        public Guid? LocationId { get; set; }
-        /// <summary>The productId property</summary>
-        public Guid? ProductId { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.UpdateOrganizationPricingRequest"/> and sets the default values.
+        /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins"/> and sets the default values.
         /// </summary>
-        public UpdateOrganizationPricingRequest()
+        public UpdateCustomerRequest_externalLogins()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.UpdateOrganizationPricingRequest"/></returns>
+        /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::HypeLabs.Connect.Sdk.Generated.Models.UpdateOrganizationPricingRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::HypeLabs.Connect.Sdk.Generated.Models.UpdateOrganizationPricingRequest();
+            return new global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -49,11 +39,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "amount", n => { Amount = n.GetDoubleValue(); } },
-                { "disabled", n => { Disabled = n.GetBoolValue(); } },
-                { "ispId", n => { IspId = n.GetGuidValue(); } },
-                { "locationId", n => { LocationId = n.GetGuidValue(); } },
-                { "productId", n => { ProductId = n.GetGuidValue(); } },
             };
         }
         /// <summary>
@@ -63,11 +48,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDoubleValue("amount", Amount);
-            writer.WriteBoolValue("disabled", Disabled);
-            writer.WriteGuidValue("ispId", IspId);
-            writer.WriteGuidValue("locationId", LocationId);
-            writer.WriteGuidValue("productId", ProductId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

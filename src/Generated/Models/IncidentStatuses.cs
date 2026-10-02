@@ -12,10 +12,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         #pragma warning disable CS1591
         Open,
         #pragma warning restore CS1591
-        [EnumMember(Value = "Investigating")]
-        #pragma warning disable CS1591
-        Investigating,
-        #pragma warning restore CS1591
         [EnumMember(Value = "Resolved")]
         #pragma warning disable CS1591
         Resolved,
