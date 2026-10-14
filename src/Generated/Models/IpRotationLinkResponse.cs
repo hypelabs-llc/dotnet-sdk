@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// A self-contained IP rotation link for a proxy: the raw token plus ready-to-use links.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class IpRotationLinkResponse : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The defaultLink property</summary>
+        /// <summary>The default HypeLabs-hosted IP rotation link.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DefaultLink { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string DefaultLink { get; set; }
 #endif
-        /// <summary>The link property</summary>
+        /// <summary>The IP rotation link served on the organization&apos;s own proxy domain (white-label).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Link { get; set; }
@@ -30,7 +31,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Link { get; set; }
 #endif
-        /// <summary>The token property</summary>
+        /// <summary>The IP rotation token (a protected customer id). Use it to build your own link if needed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Token { get; set; }

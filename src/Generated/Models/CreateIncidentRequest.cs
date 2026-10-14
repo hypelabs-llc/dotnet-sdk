@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Payload to open a new incident.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CreateIncidentRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The description property</summary>
+        /// <summary>Free-form details about the incident.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The reporterEmail property</summary>
+        /// <summary>Email address of the person reporting the incident.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ReporterEmail { get; set; }
@@ -30,7 +31,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ReporterEmail { get; set; }
 #endif
-        /// <summary>The subject property</summary>
+        /// <summary>Short title summarizing the incident.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subject { get; set; }
@@ -38,7 +39,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Subject { get; set; }
 #endif
-        /// <summary>The target property</summary>
+        /// <summary>Identifier of the affected resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Target { get; set; }

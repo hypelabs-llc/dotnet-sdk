@@ -82,9 +82,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents
         /// Reports a new incident for your organization. Rejected with 409 if an incident is already open for the same target.
         /// </summary>
         /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Incident"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Payload to open a new incident.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.Incident?> PostAsync(global::HypeLabs.Connect.Sdk.Generated.Models.CreateIncidentRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -96,7 +97,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Incident.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "409", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Incident.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns the incidents reported for your organization, most recent first.
@@ -121,7 +126,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents
         /// Reports a new incident for your organization. Rejected with 409 if an incident is already open for the same target.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Payload to open a new incident.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -135,7 +140,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json, text/plain;q=0.9");
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

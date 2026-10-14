@@ -7,34 +7,23 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Internet service provider a proxy routes through.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Isp : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The availableProxies property</summary>
+        /// <summary>Count of proxies currently available (active and unallocated) behind this option.</summary>
         public int? AvailableProxies { get; set; }
-        /// <summary>The id property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Id { get; set; }
-#nullable restore
-#else
-        public string Id { get; set; }
-#endif
-        /// <summary>The isDisabled property</summary>
+        /// <summary>Catalog list price of the option, before the organization&apos;s commercial terms. Shown as the struck-through reference next to decimal CatalogOption.Price.</summary>
+        public double? BasePrice { get; set; }
+        /// <summary>Unique identifier of the catalog option.</summary>
+        public Guid? Id { get; set; }
+        /// <summary>Whether the current organization has hidden this option from its storefront.</summary>
         public bool? IsDisabled { get; set; }
-        /// <summary>The logoUrl property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? LogoUrl { get; set; }
-#nullable restore
-#else
-        public string LogoUrl { get; set; }
-#endif
-        /// <summary>The name property</summary>
+        /// <summary>Display name of the option (ISP, datacenter, capability or product name; a location uses its city or country).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -42,10 +31,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The price property</summary>
+        /// <summary>Price the organization pays for this option: its custom override when set, otherwise the base price after its reseller discount.</summary>
         public double? Price { get; set; }
-        /// <summary>The totalProxies property</summary>
-        public int? TotalProxies { get; set; }
+        /// <summary>Price the organization resells this option at to its own customers (its decimal CatalogOption.Price plus margin), shown on the white-label store.</summary>
+        public double? RetailPrice { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Isp"/> and sets the default values.
         /// </summary>
@@ -72,12 +61,12 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "availableProxies", n => { AvailableProxies = n.GetIntValue(); } },
-                { "id", n => { Id = n.GetStringValue(); } },
+                { "basePrice", n => { BasePrice = n.GetDoubleValue(); } },
+                { "id", n => { Id = n.GetGuidValue(); } },
                 { "isDisabled", n => { IsDisabled = n.GetBoolValue(); } },
-                { "logoUrl", n => { LogoUrl = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "price", n => { Price = n.GetDoubleValue(); } },
-                { "totalProxies", n => { TotalProxies = n.GetIntValue(); } },
+                { "retailPrice", n => { RetailPrice = n.GetDoubleValue(); } },
             };
         }
         /// <summary>
@@ -88,12 +77,12 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("availableProxies", AvailableProxies);
-            writer.WriteStringValue("id", Id);
+            writer.WriteDoubleValue("basePrice", BasePrice);
+            writer.WriteGuidValue("id", Id);
             writer.WriteBoolValue("isDisabled", IsDisabled);
-            writer.WriteStringValue("logoUrl", LogoUrl);
             writer.WriteStringValue("name", Name);
             writer.WriteDoubleValue("price", Price);
-            writer.WriteIntValue("totalProxies", TotalProxies);
+            writer.WriteDoubleValue("retailPrice", RetailPrice);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

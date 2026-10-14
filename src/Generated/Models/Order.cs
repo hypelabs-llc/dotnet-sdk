@@ -7,52 +7,31 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// An order placed by an organization, owning its lifecycle: the products it holds (its ICollection&amp;lt;OrderItem&amp;gt; Order.Items),its expiry and its payment link. Live status (active, grace, expired) is computed from DateTimeOffset? Order.ExpiresAtand the organization&apos;s grace policy rather than stored.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Order : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The billingCycle property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.BillingCycles? BillingCycle { get; set; }
-        /// <summary>The completePaymentUrl property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CompletePaymentUrl { get; set; }
-#nullable restore
-#else
-        public string CompletePaymentUrl { get; set; }
-#endif
-        /// <summary>The customerEmail property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CustomerEmail { get; set; }
-#nullable restore
-#else
-        public string CustomerEmail { get; set; }
-#endif
-        /// <summary>The customerId property</summary>
+        /// <summary>Organization&apos;s own end user the order belongs to, if any.</summary>
         public Guid? CustomerId { get; set; }
-        /// <summary>The customerName property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CustomerName { get; set; }
-#nullable restore
-#else
-        public string CustomerName { get; set; }
-#endif
-        /// <summary>The expiresAt property</summary>
+        /// <summary>When the order expires. Persisted so the status can be computed from it without a background worker.</summary>
         public DateTimeOffset? ExpiresAt { get; set; }
         /// <summary>The id property</summary>
         public Guid? Id { get; set; }
-        /// <summary>The isAutoRenew property</summary>
+        /// <summary>Why the order was placed: wholesale (the organization buying for itself, on our platform account) or    retail (reselling to its own customer, on its connected account). Persisted so later actions — cancellation,    refund — resolve the same Stripe account the order settled on, instead of re-deriving it from the request.</summary>
+        public global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents? Intent { get; set; }
+        /// <summary>Whether the order still holds its proxies: live in any state other than expired.</summary>
+        public bool? IsActive { get; set; }
+        /// <summary>Recurring subscription (true) or one-shot payment (false). Does not drive expiry: it sets what the    customer is told and lets reconciliation skip one-shot orders.</summary>
         public bool? IsAutoRenew { get; set; }
-        /// <summary>The isInGracePeriod property</summary>
-        public bool? IsInGracePeriod { get; set; }
-        /// <summary>The isTrial property</summary>
+        /// <summary>Whether the order is a trial.</summary>
         public bool? IsTrial { get; set; }
-        /// <summary>The items property</summary>
+        /// <summary>Line items the order is made of, one per product bought. Each item carries its product, quantity and    the resources delivered for it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem>? Items { get; set; }
@@ -60,21 +39,19 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public List<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem> Items { get; set; }
 #endif
-        /// <summary>The organizationId property</summary>
-        public Guid? OrganizationId { get; set; }
-        /// <summary>The organizationName property</summary>
+        /// <summary>The metadata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OrganizationName { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata? Metadata { get; set; }
 #nullable restore
 #else
-        public string OrganizationName { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata Metadata { get; set; }
 #endif
         /// <summary>The paymentMethod property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods? PaymentMethod { get; set; }
         /// <summary>The paymentProcessor property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.PaymentProcessors? PaymentProcessor { get; set; }
-        /// <summary>The processorReference property</summary>
+        /// <summary>Opaque handle at the processor (a Stripe `sub_...` or `pi_...`, a Heleket reference).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ProcessorReference { get; set; }
@@ -82,9 +59,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ProcessorReference { get; set; }
 #endif
-        /// <summary>The quantity property</summary>
+        /// <summary>Total units ordered, summed over the items&apos; quantities and not stored. Requires ICollection&amp;lt;OrderItem&amp;gt; Order.Items    to be loaded.</summary>
         public int? Quantity { get; set; }
-        /// <summary>The status property</summary>
+        /// <summary>Commercial state of the order. Stored as the source of truth for states that aren&apos;t derivable from    the dates (`Provisioning`, `Expired` once a worker confirms it, and later cancellations or holds).    The transient `GracePeriod` is layered on at read time by `ResolveStatus` from DateTimeOffset? Order.ExpiresAt    and the organization&apos;s grace policy. Defaults to `Pending` (nothing paid or set up yet); each flow sets    the real state through the transition helpers.</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.OrderStatuses? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Order"/> and sets the default values.
@@ -112,18 +89,15 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "billingCycle", n => { BillingCycle = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.BillingCycles>(); } },
-                { "completePaymentUrl", n => { CompletePaymentUrl = n.GetStringValue(); } },
-                { "customerEmail", n => { CustomerEmail = n.GetStringValue(); } },
                 { "customerId", n => { CustomerId = n.GetGuidValue(); } },
-                { "customerName", n => { CustomerName = n.GetStringValue(); } },
                 { "expiresAt", n => { ExpiresAt = n.GetDateTimeOffsetValue(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
+                { "intent", n => { Intent = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>(); } },
+                { "isActive", n => { IsActive = n.GetBoolValue(); } },
                 { "isAutoRenew", n => { IsAutoRenew = n.GetBoolValue(); } },
-                { "isInGracePeriod", n => { IsInGracePeriod = n.GetBoolValue(); } },
                 { "isTrial", n => { IsTrial = n.GetBoolValue(); } },
                 { "items", n => { Items = n.GetCollectionOfObjectValues<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem>(global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "organizationId", n => { OrganizationId = n.GetGuidValue(); } },
-                { "organizationName", n => { OrganizationName = n.GetStringValue(); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata>(global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata.CreateFromDiscriminatorValue); } },
                 { "paymentMethod", n => { PaymentMethod = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods>(); } },
                 { "paymentProcessor", n => { PaymentProcessor = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentProcessors>(); } },
                 { "processorReference", n => { ProcessorReference = n.GetStringValue(); } },
@@ -139,18 +113,15 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.BillingCycles>("billingCycle", BillingCycle);
-            writer.WriteStringValue("completePaymentUrl", CompletePaymentUrl);
-            writer.WriteStringValue("customerEmail", CustomerEmail);
             writer.WriteGuidValue("customerId", CustomerId);
-            writer.WriteStringValue("customerName", CustomerName);
             writer.WriteDateTimeOffsetValue("expiresAt", ExpiresAt);
             writer.WriteGuidValue("id", Id);
+            writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>("intent", Intent);
+            writer.WriteBoolValue("isActive", IsActive);
             writer.WriteBoolValue("isAutoRenew", IsAutoRenew);
-            writer.WriteBoolValue("isInGracePeriod", IsInGracePeriod);
             writer.WriteBoolValue("isTrial", IsTrial);
             writer.WriteCollectionOfObjectValues<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem>("items", Items);
-            writer.WriteGuidValue("organizationId", OrganizationId);
-            writer.WriteStringValue("organizationName", OrganizationName);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata>("metadata", Metadata);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods>("paymentMethod", PaymentMethod);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentProcessors>("paymentProcessor", PaymentProcessor);
             writer.WriteStringValue("processorReference", ProcessorReference);

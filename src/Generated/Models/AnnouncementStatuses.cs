@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>Publication state of the announcement: only Published ones are shown.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum AnnouncementStatuses
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "Draft")]
         #pragma warning disable CS1591

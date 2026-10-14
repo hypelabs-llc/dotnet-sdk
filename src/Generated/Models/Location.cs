@@ -7,18 +7,21 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// A geographic location available in the catalog, granular to a city or a country.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Location : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The availableIsps property</summary>
+        /// <summary>Number of ISPs that cover this location.</summary>
         public int? AvailableIsps { get; set; }
-        /// <summary>The availableProxies property</summary>
+        /// <summary>Count of proxies currently available (active and unallocated) behind this option.</summary>
         public int? AvailableProxies { get; set; }
-        /// <summary>The city property</summary>
+        /// <summary>Catalog list price of the option, before the organization&apos;s commercial terms. Shown as the struck-through reference next to decimal CatalogOption.Price.</summary>
+        public double? BasePrice { get; set; }
+        /// <summary>Name of the city, null when the location is country or region granular.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? City { get; set; }
@@ -26,7 +29,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string City { get; set; }
 #endif
-        /// <summary>The countryCode property</summary>
+        /// <summary>ISO 3166-1 alpha-2 country code of the location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CountryCode { get; set; }
@@ -34,20 +37,22 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string CountryCode { get; set; }
 #endif
-        /// <summary>The id property</summary>
+        /// <summary>Unique identifier of the catalog option.</summary>
+        public Guid? Id { get; set; }
+        /// <summary>Whether the current organization has hidden this option from its storefront.</summary>
+        public bool? IsDisabled { get; set; }
+        /// <summary>Display name of the location: the city when city-granular, otherwise the country code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public string Id { get; set; }
+        public string Name { get; set; }
 #endif
-        /// <summary>The isDisabled property</summary>
-        public bool? IsDisabled { get; set; }
-        /// <summary>The price property</summary>
+        /// <summary>Price the organization pays for this option: its custom override when set, otherwise the base price after its reseller discount.</summary>
         public double? Price { get; set; }
-        /// <summary>The totalProxies property</summary>
-        public int? TotalProxies { get; set; }
+        /// <summary>Price the organization resells this option at to its own customers (its decimal CatalogOption.Price plus margin), shown on the white-label store.</summary>
+        public double? RetailPrice { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Location"/> and sets the default values.
         /// </summary>
@@ -75,12 +80,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             {
                 { "availableIsps", n => { AvailableIsps = n.GetIntValue(); } },
                 { "availableProxies", n => { AvailableProxies = n.GetIntValue(); } },
+                { "basePrice", n => { BasePrice = n.GetDoubleValue(); } },
                 { "city", n => { City = n.GetStringValue(); } },
                 { "countryCode", n => { CountryCode = n.GetStringValue(); } },
-                { "id", n => { Id = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetGuidValue(); } },
                 { "isDisabled", n => { IsDisabled = n.GetBoolValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
                 { "price", n => { Price = n.GetDoubleValue(); } },
-                { "totalProxies", n => { TotalProxies = n.GetIntValue(); } },
+                { "retailPrice", n => { RetailPrice = n.GetDoubleValue(); } },
             };
         }
         /// <summary>
@@ -92,12 +99,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("availableIsps", AvailableIsps);
             writer.WriteIntValue("availableProxies", AvailableProxies);
+            writer.WriteDoubleValue("basePrice", BasePrice);
             writer.WriteStringValue("city", City);
             writer.WriteStringValue("countryCode", CountryCode);
-            writer.WriteStringValue("id", Id);
+            writer.WriteGuidValue("id", Id);
             writer.WriteBoolValue("isDisabled", IsDisabled);
+            writer.WriteStringValue("name", Name);
             writer.WriteDoubleValue("price", Price);
-            writer.WriteIntValue("totalProxies", TotalProxies);
+            writer.WriteDoubleValue("retailPrice", RetailPrice);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

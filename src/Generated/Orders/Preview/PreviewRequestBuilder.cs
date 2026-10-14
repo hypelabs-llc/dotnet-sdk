@@ -36,28 +36,35 @@ namespace HypeLabs.Connect.Sdk.Generated.Orders.Preview
         /// <summary>
         /// Computes the price for a selection (product, location, ISP, quantity) without placing an order.
         /// </summary>
-        /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.OrderPreviewResponse"/></returns>
-        /// <param name="body">The request body</param>
+        /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderResponse"/></returns>
+        /// <param name="body">Payload to preview an order&apos;s price for a given selection, before placing it.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 400 status code</exception>
+        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.OrderPreviewResponse?> PostAsync(global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderResponse?> PostAsync(global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.OrderPreviewResponse> PostAsync(global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderResponse> PostAsync(global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.OrderPreviewResponse>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.OrderPreviewResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
+                { "404", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderResponse>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Computes the price for a selection (product, location, ISP, quantity) without placing an order.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Payload to preview an order&apos;s price for a given selection, before placing it.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,7 +78,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Orders.Preview
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json, text/plain;q=0.9");
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

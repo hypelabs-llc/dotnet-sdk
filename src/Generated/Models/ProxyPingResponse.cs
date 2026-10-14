@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// The result of testing a proxy through a real request: whether it answered, the round-trip latency,    the HTTP status the request came back with, and the exit IP the proxy routed through.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class ProxyPingResponse : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The exitIp property</summary>
+        /// <summary>The public IP the proxy routed the request through, as reported by the reach target; null when    unreachable or the target didn&apos;t return one.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExitIp { get; set; }
@@ -22,11 +23,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ExitIp { get; set; }
 #endif
-        /// <summary>The latencyMs property</summary>
-        public int? LatencyMs { get; set; }
-        /// <summary>The reachable property</summary>
+        /// <summary>Round-trip latency in milliseconds when reachable; null otherwise.</summary>
+        public int? LatencyMilliseconds { get; set; }
+        /// <summary>Whether the proxy answered the request.</summary>
         public bool? Reachable { get; set; }
-        /// <summary>The statusCode property</summary>
+        /// <summary>The HTTP status code the request came back with; null when the proxy couldn&apos;t be reached.</summary>
         public int? StatusCode { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.ProxyPingResponse"/> and sets the default values.
@@ -54,7 +55,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "exitIp", n => { ExitIp = n.GetStringValue(); } },
-                { "latencyMs", n => { LatencyMs = n.GetIntValue(); } },
+                { "latencyMilliseconds", n => { LatencyMilliseconds = n.GetIntValue(); } },
                 { "reachable", n => { Reachable = n.GetBoolValue(); } },
                 { "statusCode", n => { StatusCode = n.GetIntValue(); } },
             };
@@ -67,7 +68,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("exitIp", ExitIp);
-            writer.WriteIntValue("latencyMs", LatencyMs);
+            writer.WriteIntValue("latencyMilliseconds", LatencyMilliseconds);
             writer.WriteBoolValue("reachable", Reachable);
             writer.WriteIntValue("statusCode", StatusCode);
             writer.WriteAdditionalData(AdditionalData);

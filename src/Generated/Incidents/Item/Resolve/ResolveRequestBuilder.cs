@@ -37,9 +37,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents.Item.Resolve
         /// Marks an incident as resolved and emails the reporter.
         /// </summary>
         /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Incident"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Payload to resolve an open incident on a target.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.Incident?> DeleteAsync(global::HypeLabs.Connect.Sdk.Generated.Models.ResolveIncidentRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -51,13 +52,17 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents.Item.Resolve
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToDeleteRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Incident.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "404", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Incident.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Marks an incident as resolved and emails the reporter.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Payload to resolve an open incident on a target.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,7 +76,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents.Item.Resolve
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json, text/plain;q=0.9");
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

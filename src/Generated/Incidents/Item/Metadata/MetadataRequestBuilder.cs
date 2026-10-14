@@ -37,9 +37,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents.Item.Metadata
         /// Merge-patches an incident&apos;s metadata: each provided key is set (overwriting any existing value), a key mapped to null is removed, and keys you don&apos;t send are left unchanged.
         /// </summary>
         /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Incident"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Merge-patch of an entity&apos;s metadata (RFC 7386 semantics): a present key sets or overwrites its value,    a null value removes the key, and any key not listed is left unchanged.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.Incident?> PatchAsync(global::HypeLabs.Connect.Sdk.Generated.Models.PatchMetadataRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -51,13 +52,17 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents.Item.Metadata
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPatchRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Incident.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "404", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Incident.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Merge-patches an incident&apos;s metadata: each provided key is set (overwriting any existing value), a key mapped to null is removed, and keys you don&apos;t send are left unchanged.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Merge-patch of an entity&apos;s metadata (RFC 7386 semantics): a present key sets or overwrites its value,    a null value removes the key, and any key not listed is left unchanged.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,7 +76,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents.Item.Metadata
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json, text/plain;q=0.9");
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }

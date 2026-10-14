@@ -7,28 +7,17 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// The order that was placed: its id, and the checkout URL to follow when a hosted payment is needed.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CreateOrderResponse : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The currency property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Currency { get; set; }
-#nullable restore
-#else
-        public string Currency { get; set; }
-#endif
-        /// <summary>The isTrial property</summary>
-        public bool? IsTrial { get; set; }
-        /// <summary>The orderId property</summary>
+        /// <summary>Unique order identifier.</summary>
         public Guid? OrderId { get; set; }
-        /// <summary>The quantity property</summary>
-        public int? Quantity { get; set; }
-        /// <summary>The returnUrl property</summary>
+        /// <summary>Checkout URL the caller should send the customer to, or null when none is needed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ReturnUrl { get; set; }
@@ -36,10 +25,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ReturnUrl { get; set; }
 #endif
-        /// <summary>The total property</summary>
-        public double? Total { get; set; }
-        /// <summary>The unitPrice property</summary>
-        public double? UnitPrice { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.CreateOrderResponse"/> and sets the default values.
         /// </summary>
@@ -65,13 +50,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "currency", n => { Currency = n.GetStringValue(); } },
-                { "isTrial", n => { IsTrial = n.GetBoolValue(); } },
                 { "orderId", n => { OrderId = n.GetGuidValue(); } },
-                { "quantity", n => { Quantity = n.GetIntValue(); } },
                 { "returnUrl", n => { ReturnUrl = n.GetStringValue(); } },
-                { "total", n => { Total = n.GetDoubleValue(); } },
-                { "unitPrice", n => { UnitPrice = n.GetDoubleValue(); } },
             };
         }
         /// <summary>
@@ -81,13 +61,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("currency", Currency);
-            writer.WriteBoolValue("isTrial", IsTrial);
             writer.WriteGuidValue("orderId", OrderId);
-            writer.WriteIntValue("quantity", Quantity);
             writer.WriteStringValue("returnUrl", ReturnUrl);
-            writer.WriteDoubleValue("total", Total);
-            writer.WriteDoubleValue("unitPrice", UnitPrice);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>Scheme that produced string? Customer.PasswordHash, defaulting to BCrypt. A Legacy hash is an import    from a previous system, verified as-is and upgraded to BCrypt on the next successful login. The scheme is    exposed to clients (the admin surface shows it) even though the hash itself never is.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum PasswordHashSchemes
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "Bcrypt")]
         #pragma warning disable CS1591

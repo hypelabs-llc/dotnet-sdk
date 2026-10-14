@@ -7,13 +7,22 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Merge-patch of an entity&apos;s metadata (RFC 7386 semantics): a present key sets or overwrites its value,    a null value removes the key, and any key not listed is left unchanged.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class PatchMetadataRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Metadata keys to merge: a non-null value is written (overwriting any existing one) and a null value removes the key.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::HypeLabs.Connect.Sdk.Generated.Models.PatchMetadataRequest_metadata? Metadata { get; set; }
+#nullable restore
+#else
+        public global::HypeLabs.Connect.Sdk.Generated.Models.PatchMetadataRequest_metadata Metadata { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.PatchMetadataRequest"/> and sets the default values.
         /// </summary>
@@ -39,6 +48,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "metadata", n => { Metadata = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.PatchMetadataRequest_metadata>(global::HypeLabs.Connect.Sdk.Generated.Models.PatchMetadataRequest_metadata.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -48,6 +58,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.PatchMetadataRequest_metadata>("metadata", Metadata);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

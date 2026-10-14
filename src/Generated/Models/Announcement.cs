@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// A promotional card shown to organizations in the dashboard: a headline with an optional image, body and link.Only AnnouncementStatuses.Published ones are shown, most recent first.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Announcement : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The body property</summary>
+        /// <summary>Body text of the announcement, shown under the title.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Body { get; set; }
@@ -24,7 +25,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #endif
         /// <summary>The id property</summary>
         public Guid? Id { get; set; }
-        /// <summary>The imageUrl property</summary>
+        /// <summary>URL of the image displayed on the card.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ImageUrl { get; set; }
@@ -32,9 +33,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ImageUrl { get; set; }
 #endif
-        /// <summary>The isLive property</summary>
+        /// <summary>True when the announcement is published and currently visible.</summary>
         public bool? IsLive { get; set; }
-        /// <summary>The linkLabel property</summary>
+        /// <summary>Label of the link&apos;s call-to-action button (e.g. &quot;Learn more&quot;).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LinkLabel { get; set; }
@@ -42,7 +43,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string LinkLabel { get; set; }
 #endif
-        /// <summary>The linkUrl property</summary>
+        /// <summary>Destination URL opened when the card is clicked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LinkUrl { get; set; }
@@ -50,9 +51,17 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string LinkUrl { get; set; }
 #endif
-        /// <summary>The status property</summary>
+        /// <summary>The metadata property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Announcement_metadata? Metadata { get; set; }
+#nullable restore
+#else
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Announcement_metadata Metadata { get; set; }
+#endif
+        /// <summary>Publication state of the announcement: only Published ones are shown.</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.AnnouncementStatuses? Status { get; set; }
-        /// <summary>The title property</summary>
+        /// <summary>Headline displayed at the top of the card.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Title { get; set; }
@@ -91,6 +100,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "isLive", n => { IsLive = n.GetBoolValue(); } },
                 { "linkLabel", n => { LinkLabel = n.GetStringValue(); } },
                 { "linkUrl", n => { LinkUrl = n.GetStringValue(); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Announcement_metadata>(global::HypeLabs.Connect.Sdk.Generated.Models.Announcement_metadata.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.AnnouncementStatuses>(); } },
                 { "title", n => { Title = n.GetStringValue(); } },
             };
@@ -108,6 +118,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteBoolValue("isLive", IsLive);
             writer.WriteStringValue("linkLabel", LinkLabel);
             writer.WriteStringValue("linkUrl", LinkUrl);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Announcement_metadata>("metadata", Metadata);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.AnnouncementStatuses>("status", Status);
             writer.WriteStringValue("title", Title);
             writer.WriteAdditionalData(AdditionalData);

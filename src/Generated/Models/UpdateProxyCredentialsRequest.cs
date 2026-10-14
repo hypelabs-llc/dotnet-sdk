@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Request to change an allocated proxy&apos;s credentials. A null username or password is generated from the    organization&apos;s default formats.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class UpdateProxyCredentialsRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The allowedIps property</summary>
+        /// <summary>IP addresses allowed to use the proxy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? AllowedIps { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public List<string> AllowedIps { get; set; }
 #endif
-        /// <summary>The password property</summary>
+        /// <summary>New authentication password. Generated from the organization&apos;s default format when null.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Password { get; set; }
@@ -30,7 +31,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Password { get; set; }
 #endif
-        /// <summary>The username property</summary>
+        /// <summary>New authentication username. Generated from the organization&apos;s default format when null.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Username { get; set; }

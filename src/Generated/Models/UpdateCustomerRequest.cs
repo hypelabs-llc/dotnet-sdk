@@ -7,10 +7,11 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Payload to update a customer. Null fields are left unchanged.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class UpdateCustomerRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling Billing { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>New display name. Null leaves it unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -30,7 +31,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The email property</summary>
+        /// <summary>New email. Null leaves it unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Email { get; set; }
@@ -38,7 +39,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Email { get; set; }
 #endif
-        /// <summary>The externalId property</summary>
+        /// <summary>New external id. Null leaves it unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExternalId { get; set; }
@@ -46,7 +47,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ExternalId { get; set; }
 #endif
-        /// <summary>The externalLogins property</summary>
+        /// <summary>Replacement external logins (OAuth provider -&amp;gt; subject). Null leaves them unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins? ExternalLogins { get; set; }
@@ -54,7 +55,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public global::HypeLabs.Connect.Sdk.Generated.Models.UpdateCustomerRequest_externalLogins ExternalLogins { get; set; }
 #endif
-        /// <summary>The locale property</summary>
+        /// <summary>New locale (BCP-47 tag). Null leaves it unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Locale { get; set; }
@@ -62,7 +63,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Locale { get; set; }
 #endif
-        /// <summary>The phoneNumber property</summary>
+        /// <summary>New phone number. Null leaves it unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PhoneNumber { get; set; }
@@ -70,7 +71,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string PhoneNumber { get; set; }
 #endif
-        /// <summary>The pushNotificationsToken property</summary>
+        /// <summary>New push-notifications token. Null leaves it unchanged.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PushNotificationsToken { get; set; }

@@ -7,22 +7,29 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// One line of an Order? OrderItem.Order: a product bought in a given quantity, with the resources delivered for it.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class OrderItem : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The id property</summary>
         public Guid? Id { get; set; }
-        /// <summary>The kind property</summary>
+        /// <summary>Kind of resource this line&apos;s product delivers (proxy or host).</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.ProductKinds? Kind { get; set; }
-        /// <summary>The productId property</summary>
+        /// <summary>The metadata property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem_metadata? Metadata { get; set; }
+#nullable restore
+#else
+        public global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem_metadata Metadata { get; set; }
+#endif
+        /// <summary>Identifier of the product this line orders.</summary>
         public Guid? ProductId { get; set; }
-        /// <summary>The quantity property</summary>
-        public int? Quantity { get; set; }
-        /// <summary>The resourceIds property</summary>
+        /// <summary>Identifiers of the resources delivered for this line (proxy ids today), resolved against the cached stock. Null until the order is placed and its resources are provisioned.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Guid?>? ResourceIds { get; set; }
@@ -57,8 +64,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             {
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "kind", n => { Kind = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProductKinds>(); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem_metadata>(global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem_metadata.CreateFromDiscriminatorValue); } },
                 { "productId", n => { ProductId = n.GetGuidValue(); } },
-                { "quantity", n => { Quantity = n.GetIntValue(); } },
                 { "resourceIds", n => { ResourceIds = n.GetCollectionOfPrimitiveValues<Guid?>()?.AsList(); } },
             };
         }
@@ -71,8 +78,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteGuidValue("id", Id);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProductKinds>("kind", Kind);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem_metadata>("metadata", Metadata);
             writer.WriteGuidValue("productId", ProductId);
-            writer.WriteIntValue("quantity", Quantity);
             writer.WriteCollectionOfPrimitiveValues<Guid?>("resourceIds", ResourceIds);
             writer.WriteAdditionalData(AdditionalData);
         }

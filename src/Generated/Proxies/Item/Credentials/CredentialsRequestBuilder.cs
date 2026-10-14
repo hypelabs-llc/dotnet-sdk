@@ -22,7 +22,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CredentialsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/proxies/{proxyId}/credentials{?generate*}", pathParameters)
+        public CredentialsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/proxies/{proxyId}/credentials", pathParameters)
         {
         }
         /// <summary>
@@ -30,22 +30,22 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CredentialsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/proxies/{proxyId}/credentials{?generate*}", rawUrl)
+        public CredentialsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/proxies/{proxyId}/credentials", rawUrl)
         {
         }
         /// <summary>
-        /// Returns the credentials stored for an owned proxy, or an empty response when none are set yet. Pass generate=true to get freshly generated defaults instead of an empty response.
+        /// Returns the credentials stored for an owned proxy, or an empty response when none are set yet.
         /// </summary>
         /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.ProxyCredentialResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyCredentialResponse?> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials.CredentialsRequestBuilder.CredentialsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyCredentialResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyCredentialResponse> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials.CredentialsRequestBuilder.CredentialsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyCredentialResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -55,7 +55,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials
         /// Sets the username and password an owned proxy authenticates with.
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Request to change an allocated proxy&apos;s credentials. A null username or password is generated from the    organization&apos;s default formats.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,17 +72,17 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the credentials stored for an owned proxy, or an empty response when none are set yet. Pass generate=true to get freshly generated defaults instead of an empty response.
+        /// Returns the credentials stored for an owned proxy, or an empty response when none are set yet.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials.CredentialsRequestBuilder.CredentialsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials.CredentialsRequestBuilder.CredentialsRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -94,7 +94,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials
         /// Sets the username and password an owned proxy authenticates with.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Request to change an allocated proxy&apos;s credentials. A null username or password is generated from the    organization&apos;s default formats.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -121,22 +121,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials
             return new global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials.CredentialsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns the credentials stored for an owned proxy, or an empty response when none are set yet. Pass generate=true to get freshly generated defaults instead of an empty response.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class CredentialsRequestBuilderGetQueryParameters 
-        {
-            #pragma warning disable CS1591
-            [QueryParameter("generate")]
-            public bool? Generate { get; set; }
-            #pragma warning restore CS1591
-        }
-        /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
         [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class CredentialsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials.CredentialsRequestBuilder.CredentialsRequestBuilderGetQueryParameters>
+        public partial class CredentialsRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
         {
         }
         /// <summary>

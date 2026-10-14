@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>Processor that settles the order (Stripe, Heleket). Selects the webhook and reconciliation path that    keeps it alive. Null for a trial (nothing to settle).</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum PaymentProcessors
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "None")]
         #pragma warning disable CS1591
@@ -19,6 +18,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         [EnumMember(Value = "Stripe")]
         #pragma warning disable CS1591
         Stripe,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464")]
+        #pragma warning disable CS1591
+        OpenapiJsonNullSentinelValue2BF936000FE44250987AE5DDB203E464,
         #pragma warning restore CS1591
     }
 }

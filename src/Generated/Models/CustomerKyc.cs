@@ -7,16 +7,17 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Know-your-customer details a customer submits before their first order: intended proxy usage, acceptable-usepolicy acknowledgement, and the submitted/approved state. Stored as JSON on the Customer.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CustomerKyc : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The approved property</summary>
+        /// <summary>Whether the submitted KYC has been approved by HypeLabs.</summary>
         public bool? Approved { get; set; }
-        /// <summary>The description property</summary>
+        /// <summary>Free-text description of how the customer intends to use the proxies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -24,9 +25,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The policyAcknowledged property</summary>
+        /// <summary>Whether the customer acknowledged the acceptable-use policy when submitting.</summary>
         public bool? PolicyAcknowledged { get; set; }
-        /// <summary>The scopeOfUse property</summary>
+        /// <summary>Domain area the customer selected for their proxy usage (e.g. &quot;ad-verification&quot;, &quot;seo&quot;).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ScopeOfUse { get; set; }
@@ -34,7 +35,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ScopeOfUse { get; set; }
 #endif
-        /// <summary>The submitted property</summary>
+        /// <summary>Whether the customer has submitted their KYC details.</summary>
         public bool? Submitted { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.CustomerKyc"/> and sets the default values.

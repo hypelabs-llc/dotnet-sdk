@@ -7,24 +7,19 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// A catalog product: the shared catalog-option shape (id, stock, price, availability) plus the    product&apos;s own metadata. Internal shape (operating modes, price rows, granularity) stays on the    `Entities.Product` entity.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Product : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The basePrice property</summary>
+        /// <summary>Count of proxies currently available (active and unallocated) behind this option.</summary>
+        public int? AvailableProxies { get; set; }
+        /// <summary>Catalog list price of the option, before the organization&apos;s commercial terms. Shown as the struck-through reference next to decimal CatalogOption.Price.</summary>
         public double? BasePrice { get; set; }
-        /// <summary>The currency property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Currency { get; set; }
-#nullable restore
-#else
-        public string Currency { get; set; }
-#endif
-        /// <summary>The description property</summary>
+        /// <summary>Short marketing description of the product shown in the catalog.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -32,23 +27,13 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The icon property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Icon { get; set; }
-#nullable restore
-#else
-        public string Icon { get; set; }
-#endif
-        /// <summary>The id property</summary>
+        /// <summary>Unique identifier of the catalog option.</summary>
         public Guid? Id { get; set; }
-        /// <summary>The isDisabled property</summary>
+        /// <summary>Whether the current organization has hidden this option from its storefront.</summary>
         public bool? IsDisabled { get; set; }
-        /// <summary>The isEnabled property</summary>
-        public bool? IsEnabled { get; set; }
-        /// <summary>The kind property</summary>
+        /// <summary>Kind of resource this product delivers (proxy, host).</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.ProductKinds? Kind { get; set; }
-        /// <summary>The name property</summary>
+        /// <summary>Display name of the option (ISP, datacenter, capability or product name; a location uses its city or country).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -56,8 +41,12 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The pricingType property</summary>
+        /// <summary>Price the organization pays for this option: its custom override when set, otherwise the base price after its reseller discount.</summary>
+        public double? Price { get; set; }
+        /// <summary>How the product is billed.</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.PricingTypes? PricingType { get; set; }
+        /// <summary>Price the organization resells this option at to its own customers (its decimal CatalogOption.Price plus margin), shown on the white-label store.</summary>
+        public double? RetailPrice { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Product"/> and sets the default values.
         /// </summary>
@@ -83,16 +72,16 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "availableProxies", n => { AvailableProxies = n.GetIntValue(); } },
                 { "basePrice", n => { BasePrice = n.GetDoubleValue(); } },
-                { "currency", n => { Currency = n.GetStringValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
-                { "icon", n => { Icon = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "isDisabled", n => { IsDisabled = n.GetBoolValue(); } },
-                { "isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
                 { "kind", n => { Kind = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProductKinds>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "price", n => { Price = n.GetDoubleValue(); } },
                 { "pricingType", n => { PricingType = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PricingTypes>(); } },
+                { "retailPrice", n => { RetailPrice = n.GetDoubleValue(); } },
             };
         }
         /// <summary>
@@ -102,16 +91,16 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteIntValue("availableProxies", AvailableProxies);
             writer.WriteDoubleValue("basePrice", BasePrice);
-            writer.WriteStringValue("currency", Currency);
             writer.WriteStringValue("description", Description);
-            writer.WriteStringValue("icon", Icon);
             writer.WriteGuidValue("id", Id);
             writer.WriteBoolValue("isDisabled", IsDisabled);
-            writer.WriteBoolValue("isEnabled", IsEnabled);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProductKinds>("kind", Kind);
             writer.WriteStringValue("name", Name);
+            writer.WriteDoubleValue("price", Price);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PricingTypes>("pricingType", PricingType);
+            writer.WriteDoubleValue("retailPrice", RetailPrice);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

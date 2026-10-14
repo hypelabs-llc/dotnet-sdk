@@ -7,10 +7,11 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// The user&apos;s external OAuth logins, keyed by provider (e.g. &quot;apple&quot;, &quot;google&quot;) with the provider&apos;s    user identifier as the value. Stored as JSON. Null when the user has no linked social logins.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Customer_externalLogins : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }

@@ -7,17 +7,18 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// The IP rotation configured on a proxy: how often its IP rotates, in seconds and whole minutes. Fetched livefrom the Manager; a 404 means no rotation is configured.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class ProxyIpRotationResponse : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The delayMinutes property</summary>
-        public int? DelayMinutes { get; set; }
-        /// <summary>The delaySeconds property</summary>
-        public int? DelaySeconds { get; set; }
+        /// <summary>Interval between IP rotations, in whole minutes.</summary>
+        public int? IntervalMinutes { get; set; }
+        /// <summary>Interval between IP rotations, in seconds.</summary>
+        public int? IntervalSeconds { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.ProxyIpRotationResponse"/> and sets the default values.
         /// </summary>
@@ -43,8 +44,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "delayMinutes", n => { DelayMinutes = n.GetIntValue(); } },
-                { "delaySeconds", n => { DelaySeconds = n.GetIntValue(); } },
+                { "intervalMinutes", n => { IntervalMinutes = n.GetIntValue(); } },
+                { "intervalSeconds", n => { IntervalSeconds = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -54,8 +55,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("delayMinutes", DelayMinutes);
-            writer.WriteIntValue("delaySeconds", DelaySeconds);
+            writer.WriteIntValue("intervalMinutes", IntervalMinutes);
+            writer.WriteIntValue("intervalSeconds", IntervalSeconds);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

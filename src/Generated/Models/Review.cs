@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// A review left by one of an organization&apos;s customers: review text plus a star rating, owned by and scoped tothe Organization? Review.Organization. Tied to a known Customer? Review.Customer via Guid? Review.CustomerId when thereis one, otherwise left anonymous with a string? Review.CustomAuthorName.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Review : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The authorName property</summary>
+        /// <summary>The name to show for the reviewer: the explicit string? Review.CustomAuthorName if set, otherwise    the linked customer&apos;s display name or email, falling back to &quot;Anonymous&quot;. Requires the customer to be    loaded (see the reads that `Include` it).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AuthorName { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string AuthorName { get; set; }
 #endif
-        /// <summary>The content property</summary>
+        /// <summary>The review text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Content { get; set; }
@@ -30,7 +31,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Content { get; set; }
 #endif
-        /// <summary>The customAuthorName property</summary>
+        /// <summary>Display name for the reviewer when no customer is tied to the review, or an override of the linked    customer&apos;s name. Null falls back to the Customer? Review.Customer&apos;s name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CustomAuthorName { get; set; }
@@ -38,25 +39,23 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string CustomAuthorName { get; set; }
 #endif
-        /// <summary>The customerId property</summary>
+        /// <summary>Id of the customer who left the review when it is tied to a known one, or null for anonymous reviews.</summary>
         public Guid? CustomerId { get; set; }
         /// <summary>The id property</summary>
         public Guid? Id { get; set; }
-        /// <summary>The isFeatured property</summary>
+        /// <summary>Whether the review is highlighted (e.g. pinned on a landing page). Defaults to false.</summary>
         public bool? IsFeatured { get; set; }
-        /// <summary>The isPending property</summary>
+        /// <summary>Whether the review awaits moderation: true until approved, and only non-pending reviews show    publicly (rejecting one deletes it).</summary>
         public bool? IsPending { get; set; }
-        /// <summary>The organizationId property</summary>
-        public Guid? OrganizationId { get; set; }
-        /// <summary>The organizationName property</summary>
+        /// <summary>The metadata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OrganizationName { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Review_metadata? Metadata { get; set; }
 #nullable restore
 #else
-        public string OrganizationName { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Review_metadata Metadata { get; set; }
 #endif
-        /// <summary>The rating property</summary>
+        /// <summary>The star rating, from 1 to 5.</summary>
         public int? Rating { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Review"/> and sets the default values.
@@ -90,8 +89,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "isFeatured", n => { IsFeatured = n.GetBoolValue(); } },
                 { "isPending", n => { IsPending = n.GetBoolValue(); } },
-                { "organizationId", n => { OrganizationId = n.GetGuidValue(); } },
-                { "organizationName", n => { OrganizationName = n.GetStringValue(); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Review_metadata>(global::HypeLabs.Connect.Sdk.Generated.Models.Review_metadata.CreateFromDiscriminatorValue); } },
                 { "rating", n => { Rating = n.GetIntValue(); } },
             };
         }
@@ -109,8 +107,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteGuidValue("id", Id);
             writer.WriteBoolValue("isFeatured", IsFeatured);
             writer.WriteBoolValue("isPending", IsPending);
-            writer.WriteGuidValue("organizationId", OrganizationId);
-            writer.WriteStringValue("organizationName", OrganizationName);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Review_metadata>("metadata", Metadata);
             writer.WriteIntValue("rating", Rating);
             writer.WriteAdditionalData(AdditionalData);
         }

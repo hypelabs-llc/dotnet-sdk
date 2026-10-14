@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Connection details for a proxy an organization owns (one of its allocations).
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Proxy : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The capabilities property</summary>
+        /// <summary>The optional capabilities the proxy exposes (e.g. IPv6, IP scoring).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::HypeLabs.Connect.Sdk.Generated.Models.CapabilityTypes?>? Capabilities { get; set; }
@@ -22,31 +23,23 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public List<global::HypeLabs.Connect.Sdk.Generated.Models.CapabilityTypes?> Capabilities { get; set; }
 #endif
-        /// <summary>The city property</summary>
+        /// <summary>The datacenter property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? City { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyDatacenter? Datacenter { get; set; }
 #nullable restore
 #else
-        public string City { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyDatacenter Datacenter { get; set; }
 #endif
-        /// <summary>The countryCode property</summary>
+        /// <summary>The optional features configured on the proxy (IP rotation, ...).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CountryCode { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyFeatures? Features { get; set; }
 #nullable restore
 #else
-        public string CountryCode { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyFeatures Features { get; set; }
 #endif
-        /// <summary>The datacenterName property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? DatacenterName { get; set; }
-#nullable restore
-#else
-        public string DatacenterName { get; set; }
-#endif
-        /// <summary>The host property</summary>
+        /// <summary>Hostname to connect to, with the reseller-facing datacenter label (e.g. `fr3.acme.com`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Host { get; set; }
@@ -54,23 +47,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Host { get; set; }
 #endif
-        /// <summary>The huid property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Huid { get; set; }
-#nullable restore
-#else
-        public string Huid { get; set; }
-#endif
-        /// <summary>The id property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Id { get; set; }
-#nullable restore
-#else
-        public string Id { get; set; }
-#endif
-        /// <summary>The ip property</summary>
+        /// <summary>Identifier of the proxy.</summary>
+        public Guid? Id { get; set; }
+        /// <summary>Resolved IP address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Ip { get; set; }
@@ -78,34 +57,48 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Ip { get; set; }
 #endif
-        /// <summary>The ipRotationDelayMinutes property</summary>
-        public int? IpRotationDelayMinutes { get; set; }
-        /// <summary>The ispLogoUrl property</summary>
+        /// <summary>The isp property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? IspLogoUrl { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyIsp? Isp { get; set; }
 #nullable restore
 #else
-        public string IspLogoUrl { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyIsp Isp { get; set; }
 #endif
-        /// <summary>The ispName property</summary>
+        /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? IspName { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyLocation? Location { get; set; }
 #nullable restore
 #else
-        public string IspName { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyLocation Location { get; set; }
 #endif
-        /// <summary>The owner property</summary>
+        /// <summary>The organization&apos;s free-form note for this proxy, when it has annotated it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyOwner? Owner { get; set; }
+        public string? Note { get; set; }
 #nullable restore
 #else
-        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyOwner Owner { get; set; }
+        public string Note { get; set; }
 #endif
-        /// <summary>The port property</summary>
+        /// <summary>Connection port.</summary>
         public int? Port { get; set; }
+        /// <summary>The product property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyProduct? Product { get; set; }
+#nullable restore
+#else
+        public global::HypeLabs.Connect.Sdk.Generated.Models.ProxyProduct Product { get; set; }
+#endif
+        /// <summary>The organization&apos;s tags for this proxy (empty when none).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Tags { get; set; }
+#nullable restore
+#else
+        public List<string> Tags { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Proxy"/> and sets the default values.
         /// </summary>
@@ -132,18 +125,17 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "capabilities", n => { Capabilities = n.GetCollectionOfEnumValues<global::HypeLabs.Connect.Sdk.Generated.Models.CapabilityTypes>()?.AsList(); } },
-                { "city", n => { City = n.GetStringValue(); } },
-                { "countryCode", n => { CountryCode = n.GetStringValue(); } },
-                { "datacenterName", n => { DatacenterName = n.GetStringValue(); } },
+                { "datacenter", n => { Datacenter = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyDatacenter>(global::HypeLabs.Connect.Sdk.Generated.Models.ProxyDatacenter.CreateFromDiscriminatorValue); } },
+                { "features", n => { Features = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyFeatures>(global::HypeLabs.Connect.Sdk.Generated.Models.ProxyFeatures.CreateFromDiscriminatorValue); } },
                 { "host", n => { Host = n.GetStringValue(); } },
-                { "huid", n => { Huid = n.GetStringValue(); } },
-                { "id", n => { Id = n.GetStringValue(); } },
+                { "id", n => { Id = n.GetGuidValue(); } },
                 { "ip", n => { Ip = n.GetStringValue(); } },
-                { "ipRotationDelayMinutes", n => { IpRotationDelayMinutes = n.GetIntValue(); } },
-                { "ispLogoUrl", n => { IspLogoUrl = n.GetStringValue(); } },
-                { "ispName", n => { IspName = n.GetStringValue(); } },
-                { "owner", n => { Owner = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyOwner>(global::HypeLabs.Connect.Sdk.Generated.Models.ProxyOwner.CreateFromDiscriminatorValue); } },
+                { "isp", n => { Isp = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyIsp>(global::HypeLabs.Connect.Sdk.Generated.Models.ProxyIsp.CreateFromDiscriminatorValue); } },
+                { "location", n => { Location = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyLocation>(global::HypeLabs.Connect.Sdk.Generated.Models.ProxyLocation.CreateFromDiscriminatorValue); } },
+                { "note", n => { Note = n.GetStringValue(); } },
                 { "port", n => { Port = n.GetIntValue(); } },
+                { "product", n => { Product = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyProduct>(global::HypeLabs.Connect.Sdk.Generated.Models.ProxyProduct.CreateFromDiscriminatorValue); } },
+                { "tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -154,18 +146,17 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfEnumValues<global::HypeLabs.Connect.Sdk.Generated.Models.CapabilityTypes>("capabilities", Capabilities);
-            writer.WriteStringValue("city", City);
-            writer.WriteStringValue("countryCode", CountryCode);
-            writer.WriteStringValue("datacenterName", DatacenterName);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyDatacenter>("datacenter", Datacenter);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyFeatures>("features", Features);
             writer.WriteStringValue("host", Host);
-            writer.WriteStringValue("huid", Huid);
-            writer.WriteStringValue("id", Id);
+            writer.WriteGuidValue("id", Id);
             writer.WriteStringValue("ip", Ip);
-            writer.WriteIntValue("ipRotationDelayMinutes", IpRotationDelayMinutes);
-            writer.WriteStringValue("ispLogoUrl", IspLogoUrl);
-            writer.WriteStringValue("ispName", IspName);
-            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyOwner>("owner", Owner);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyIsp>("isp", Isp);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyLocation>("location", Location);
+            writer.WriteStringValue("note", Note);
             writer.WriteIntValue("port", Port);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyProduct>("product", Product);
+            writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

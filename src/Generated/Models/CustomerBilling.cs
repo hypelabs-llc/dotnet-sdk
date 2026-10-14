@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Legal billing address and tax identifiers shown on a customer&apos;s invoices. Value object owned byCustomer with no identity of its own; all fields are optional.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CustomerBilling : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The addressLine property</summary>
+        /// <summary>Street address (line 1).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AddressLine { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string AddressLine { get; set; }
 #endif
-        /// <summary>The city property</summary>
+        /// <summary>City.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? City { get; set; }
@@ -30,7 +31,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string City { get; set; }
 #endif
-        /// <summary>The companyName property</summary>
+        /// <summary>The company&apos;s legal name, when bool CustomerBilling.IsCompany is true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CompanyName { get; set; }
@@ -38,7 +39,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string CompanyName { get; set; }
 #endif
-        /// <summary>The country property</summary>
+        /// <summary>Country (ISO 3166-1 alpha-2 code or name).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Country { get; set; }
@@ -46,9 +47,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Country { get; set; }
 #endif
-        /// <summary>The isCompany property</summary>
+        /// <summary>Whether the customer is billed as a company (B2B) rather than an individual (B2C). When true,    string? CustomerBilling.CompanyName and string? CustomerBilling.TaxId apply.</summary>
         public bool? IsCompany { get; set; }
-        /// <summary>The postalCode property</summary>
+        /// <summary>Postal / ZIP code.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PostalCode { get; set; }
@@ -56,7 +57,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string PostalCode { get; set; }
 #endif
-        /// <summary>The registrationNumber property</summary>
+        /// <summary>Company registration number (e.g. SIREN/SIRET, Companies House number), distinct from the VAT/tax    number in string? CustomerBilling.TaxId. Applies when bool CustomerBilling.IsCompany is true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RegistrationNumber { get; set; }
@@ -64,7 +65,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string RegistrationNumber { get; set; }
 #endif
-        /// <summary>The taxId property</summary>
+        /// <summary>VAT / tax identification number.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TaxId { get; set; }

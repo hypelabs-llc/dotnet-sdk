@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// A complaint reported about a proxy (or other resource), usually by a customer. string Incident.Target andstring Incident.ReporterEmail are free-form strings until they are linked to their own entities.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Incident : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The description property</summary>
+        /// <summary>Full text of the complaint, null when none was provided.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -24,13 +25,17 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #endif
         /// <summary>The id property</summary>
         public Guid? Id { get; set; }
-        /// <summary>The isOverdue property</summary>
+        /// <summary>True when the incident is still open and was created more than TimeSpan Incident.DefaultOverdueAfter ago.</summary>
         public bool? IsOverdue { get; set; }
-        /// <summary>The managerIncidentId property</summary>
-        public Guid? ManagerIncidentId { get; set; }
-        /// <summary>The organizationId property</summary>
-        public Guid? OrganizationId { get; set; }
-        /// <summary>The reason property</summary>
+        /// <summary>The metadata property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Incident_metadata? Metadata { get; set; }
+#nullable restore
+#else
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Incident_metadata Metadata { get; set; }
+#endif
+        /// <summary>Why the target went down, picked from the predefined reasons when the incident is resolved.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Reason { get; set; }
@@ -38,7 +43,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Reason { get; set; }
 #endif
-        /// <summary>The reporterEmail property</summary>
+        /// <summary>Email of the customer who reported the incident.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ReporterEmail { get; set; }
@@ -46,7 +51,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ReporterEmail { get; set; }
 #endif
-        /// <summary>The resolutionNote property</summary>
+        /// <summary>Message written for the customer at resolution, surfaced to them (e.g. by email) later.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ResolutionNote { get; set; }
@@ -54,11 +59,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ResolutionNote { get; set; }
 #endif
-        /// <summary>The resolvedAt property</summary>
+        /// <summary>When the incident was resolved, null while it is still open.</summary>
         public DateTimeOffset? ResolvedAt { get; set; }
-        /// <summary>The status property</summary>
+        /// <summary>Lifecycle state of the incident (open, resolved, etc.).</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.IncidentStatuses? Status { get; set; }
-        /// <summary>The subject property</summary>
+        /// <summary>Short one-line title of the complaint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subject { get; set; }
@@ -66,7 +71,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Subject { get; set; }
 #endif
-        /// <summary>The target property</summary>
+        /// <summary>Identifier of the affected proxy (hostname:port).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Target { get; set; }
@@ -102,8 +107,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "isOverdue", n => { IsOverdue = n.GetBoolValue(); } },
-                { "managerIncidentId", n => { ManagerIncidentId = n.GetGuidValue(); } },
-                { "organizationId", n => { OrganizationId = n.GetGuidValue(); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Incident_metadata>(global::HypeLabs.Connect.Sdk.Generated.Models.Incident_metadata.CreateFromDiscriminatorValue); } },
                 { "reason", n => { Reason = n.GetStringValue(); } },
                 { "reporterEmail", n => { ReporterEmail = n.GetStringValue(); } },
                 { "resolutionNote", n => { ResolutionNote = n.GetStringValue(); } },
@@ -123,8 +127,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteStringValue("description", Description);
             writer.WriteGuidValue("id", Id);
             writer.WriteBoolValue("isOverdue", IsOverdue);
-            writer.WriteGuidValue("managerIncidentId", ManagerIncidentId);
-            writer.WriteGuidValue("organizationId", OrganizationId);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Incident_metadata>("metadata", Metadata);
             writer.WriteStringValue("reason", Reason);
             writer.WriteStringValue("reporterEmail", ReporterEmail);
             writer.WriteStringValue("resolutionNote", ResolutionNote);

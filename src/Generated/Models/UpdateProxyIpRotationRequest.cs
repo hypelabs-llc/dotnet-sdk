@@ -7,15 +7,16 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Request to configure a proxy&apos;s IP rotation. An interval of 0 disables rotation.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class UpdateProxyIpRotationRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The delaySeconds property</summary>
-        public int? DelaySeconds { get; set; }
+        /// <summary>How often the proxy rotates its IP, in seconds. 0 disables rotation.</summary>
+        public int? IntervalSeconds { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.UpdateProxyIpRotationRequest"/> and sets the default values.
         /// </summary>
@@ -41,7 +42,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "delaySeconds", n => { DelaySeconds = n.GetIntValue(); } },
+                { "intervalSeconds", n => { IntervalSeconds = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -51,7 +52,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("delaySeconds", DelaySeconds);
+            writer.WriteIntValue("intervalSeconds", IntervalSeconds);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

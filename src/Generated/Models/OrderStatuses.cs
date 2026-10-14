@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>Commercial state of the order. Stored as the source of truth for states that aren&apos;t derivable from    the dates (`Provisioning`, `Expired` once a worker confirms it, and later cancellations or holds).    The transient `GracePeriod` is layered on at read time by `ResolveStatus` from DateTimeOffset? Order.ExpiresAt    and the organization&apos;s grace policy. Defaults to `Pending` (nothing paid or set up yet); each flow sets    the real state through the transition helpers.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum OrderStatuses
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "Pending")]
         #pragma warning disable CS1591
@@ -19,6 +18,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         [EnumMember(Value = "Active")]
         #pragma warning disable CS1591
         Active,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "GracePeriod")]
+        #pragma warning disable CS1591
+        GracePeriod,
         #pragma warning restore CS1591
         [EnumMember(Value = "Expired")]
         #pragma warning disable CS1591

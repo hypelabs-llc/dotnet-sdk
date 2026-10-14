@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// An end user that an Organization? Customer.Organization manages through its API, scoped to that organization so twoorgs can hold the same email without collision. Not an ASP.NET Identity user (that is the platform&apos;s ownUser): customers never enter the auth pipeline.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class Customer : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The avatarUrl property</summary>
+        /// <summary>The user&apos;s Gravatar avatar URL, derived from their email (falls back to a neutral silhouette    when the address has no Gravatar). Computed, not stored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AvatarUrl { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string AvatarUrl { get; set; }
 #endif
-        /// <summary>The bannedAt property</summary>
+        /// <summary>When the customer was banned. Null while active: banning disables access without deleting the    record, so the value is kept for the audit trail.</summary>
         public DateTimeOffset? BannedAt { get; set; }
         /// <summary>The billing property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,7 +33,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling Billing { get; set; }
 #endif
-        /// <summary>The countryCode property</summary>
+        /// <summary>The customer&apos;s ISO 3166-1 alpha-2 country code (uppercase): their billing country when set,    otherwise the region of their locale (e.g. `en-US` → `US`). Computed, not persisted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CountryCode { get; set; }
@@ -40,7 +41,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string CountryCode { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>Display name shown for the customer. Null when none was provided.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -48,7 +49,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The email property</summary>
+        /// <summary>The customer&apos;s email. Unique within the owning organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Email { get; set; }
@@ -56,9 +57,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Email { get; set; }
 #endif
-        /// <summary>The emailVerified property</summary>
+        /// <summary>Whether the email has been verified, set true when the customer follows the verification link    (see `CustomerService.VerifyEmailAsync`). Defaults to false.</summary>
         public bool? EmailVerified { get; set; }
-        /// <summary>The externalId property</summary>
+        /// <summary>Identifier this customer has in the organization&apos;s own system, matched to keep creation    idempotent. Null when the organization supplies none.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExternalId { get; set; }
@@ -66,7 +67,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ExternalId { get; set; }
 #endif
-        /// <summary>The externalLogins property</summary>
+        /// <summary>The user&apos;s external OAuth logins, keyed by provider (e.g. &quot;apple&quot;, &quot;google&quot;) with the provider&apos;s    user identifier as the value. Stored as JSON. Null when the user has no linked social logins.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::HypeLabs.Connect.Sdk.Generated.Models.Customer_externalLogins? ExternalLogins { get; set; }
@@ -74,12 +75,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public global::HypeLabs.Connect.Sdk.Generated.Models.Customer_externalLogins ExternalLogins { get; set; }
 #endif
+        /// <summary>The gracePeriodPolicy property</summary>
+        public global::HypeLabs.Connect.Sdk.Generated.Models.GracePeriodPolicies? GracePeriodPolicy { get; set; }
         /// <summary>The id property</summary>
         public Guid? Id { get; set; }
-        /// <summary>The isActive property</summary>
+        /// <summary>Whether the user is allowed to authenticate. False = banned; set DateTimeOffset? Customer.BannedAt too.    Defaults to true.</summary>
         public bool? IsActive { get; set; }
-        /// <summary>The isRegisteredToday property</summary>
-        public bool? IsRegisteredToday { get; set; }
+        /// <summary>Whether this customer is a company (B2B) rather than an individual. True only when billing says so;    a customer with no billing is treated as an individual. Computed, not persisted — the `isCompany` query    filter runs on this in memory, so a missing billing correctly counts as a person.</summary>
+        public bool? IsCompany { get; set; }
         /// <summary>The kyc property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -88,9 +91,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public global::HypeLabs.Connect.Sdk.Generated.Models.CustomerKyc Kyc { get; set; }
 #endif
-        /// <summary>The lastLoginAt property</summary>
+        /// <summary>When the user last signed in, if ever. Null until their first login.</summary>
         public DateTimeOffset? LastLoginAt { get; set; }
-        /// <summary>The locale property</summary>
+        /// <summary>The user&apos;s preferred locale (e.g. &quot;en&quot;, &quot;fr&quot;) for localized emails and OTP messages. Null until set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Locale { get; set; }
@@ -98,19 +101,17 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Locale { get; set; }
 #endif
-        /// <summary>The organizationId property</summary>
-        public Guid? OrganizationId { get; set; }
-        /// <summary>The organizationName property</summary>
+        /// <summary>The metadata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OrganizationName { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Customer_metadata? Metadata { get; set; }
 #nullable restore
 #else
-        public string OrganizationName { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.Customer_metadata Metadata { get; set; }
 #endif
-        /// <summary>The passwordHashScheme property</summary>
+        /// <summary>Scheme that produced string? Customer.PasswordHash, defaulting to BCrypt. A Legacy hash is an import    from a previous system, verified as-is and upgraded to BCrypt on the next successful login. The scheme is    exposed to clients (the admin surface shows it) even though the hash itself never is.</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.PasswordHashSchemes? PasswordHashScheme { get; set; }
-        /// <summary>The paymentCustomerId property</summary>
+        /// <summary>The user&apos;s id with the payment processor (e.g. a Stripe customer id), if one has been created    for them. Generic across processors; null until set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PaymentCustomerId { get; set; }
@@ -118,7 +119,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string PaymentCustomerId { get; set; }
 #endif
-        /// <summary>The phoneNumber property</summary>
+        /// <summary>The user&apos;s phone number, if provided. Null until set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PhoneNumber { get; set; }
@@ -126,7 +127,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string PhoneNumber { get; set; }
 #endif
-        /// <summary>The pushNotificationsToken property</summary>
+        /// <summary>The device token used to send this user push notifications, if one has been registered. Null    until set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PushNotificationsToken { get; set; }
@@ -168,14 +169,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "emailVerified", n => { EmailVerified = n.GetBoolValue(); } },
                 { "externalId", n => { ExternalId = n.GetStringValue(); } },
                 { "externalLogins", n => { ExternalLogins = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Customer_externalLogins>(global::HypeLabs.Connect.Sdk.Generated.Models.Customer_externalLogins.CreateFromDiscriminatorValue); } },
+                { "gracePeriodPolicy", n => { GracePeriodPolicy = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.GracePeriodPolicies>(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "isActive", n => { IsActive = n.GetBoolValue(); } },
-                { "isRegisteredToday", n => { IsRegisteredToday = n.GetBoolValue(); } },
+                { "isCompany", n => { IsCompany = n.GetBoolValue(); } },
                 { "kyc", n => { Kyc = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerKyc>(global::HypeLabs.Connect.Sdk.Generated.Models.CustomerKyc.CreateFromDiscriminatorValue); } },
                 { "lastLoginAt", n => { LastLoginAt = n.GetDateTimeOffsetValue(); } },
                 { "locale", n => { Locale = n.GetStringValue(); } },
-                { "organizationId", n => { OrganizationId = n.GetGuidValue(); } },
-                { "organizationName", n => { OrganizationName = n.GetStringValue(); } },
+                { "metadata", n => { Metadata = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Customer_metadata>(global::HypeLabs.Connect.Sdk.Generated.Models.Customer_metadata.CreateFromDiscriminatorValue); } },
                 { "passwordHashScheme", n => { PasswordHashScheme = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PasswordHashSchemes>(); } },
                 { "paymentCustomerId", n => { PaymentCustomerId = n.GetStringValue(); } },
                 { "phoneNumber", n => { PhoneNumber = n.GetStringValue(); } },
@@ -198,14 +199,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteBoolValue("emailVerified", EmailVerified);
             writer.WriteStringValue("externalId", ExternalId);
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Customer_externalLogins>("externalLogins", ExternalLogins);
+            writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.GracePeriodPolicies>("gracePeriodPolicy", GracePeriodPolicy);
             writer.WriteGuidValue("id", Id);
             writer.WriteBoolValue("isActive", IsActive);
-            writer.WriteBoolValue("isRegisteredToday", IsRegisteredToday);
+            writer.WriteBoolValue("isCompany", IsCompany);
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerKyc>("kyc", Kyc);
             writer.WriteDateTimeOffsetValue("lastLoginAt", LastLoginAt);
             writer.WriteStringValue("locale", Locale);
-            writer.WriteGuidValue("organizationId", OrganizationId);
-            writer.WriteStringValue("organizationName", OrganizationName);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Customer_metadata>("metadata", Metadata);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PasswordHashSchemes>("passwordHashScheme", PasswordHashScheme);
             writer.WriteStringValue("paymentCustomerId", PaymentCustomerId);
             writer.WriteStringValue("phoneNumber", PhoneNumber);

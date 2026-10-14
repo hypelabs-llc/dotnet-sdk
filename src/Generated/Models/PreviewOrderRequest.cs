@@ -7,24 +7,25 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Payload to preview an order&apos;s price for a given selection, before placing it.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class PreviewOrderRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The billingCycle property</summary>
-        public global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfBillingCycles? BillingCycle { get; set; }
-        /// <summary>The ispId property</summary>
-        public Guid? IspId { get; set; }
-        /// <summary>The locationId property</summary>
-        public Guid? LocationId { get; set; }
-        /// <summary>The paymentMethod property</summary>
-        public global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfPaymentMethods? PaymentMethod { get; set; }
-        /// <summary>The productId property</summary>
-        public Guid? ProductId { get; set; }
-        /// <summary>The quantity property</summary>
+        /// <summary>Priced selection the order is placed against.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria? Criteria { get; set; }
+#nullable restore
+#else
+        public global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria Criteria { get; set; }
+#endif
+        /// <summary>The intent property</summary>
+        public global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents? Intent { get; set; }
+        /// <summary>Number of units to order. Defaults to 1.</summary>
         public int? Quantity { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderRequest"/> and sets the default values.
@@ -51,11 +52,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "billingCycle", n => { BillingCycle = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfBillingCycles>(); } },
-                { "ispId", n => { IspId = n.GetGuidValue(); } },
-                { "locationId", n => { LocationId = n.GetGuidValue(); } },
-                { "paymentMethod", n => { PaymentMethod = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfPaymentMethods>(); } },
-                { "productId", n => { ProductId = n.GetGuidValue(); } },
+                { "criteria", n => { Criteria = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria>(global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria.CreateFromDiscriminatorValue); } },
+                { "intent", n => { Intent = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>(); } },
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
             };
         }
@@ -66,11 +64,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfBillingCycles>("billingCycle", BillingCycle);
-            writer.WriteGuidValue("ispId", IspId);
-            writer.WriteGuidValue("locationId", LocationId);
-            writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfPaymentMethods>("paymentMethod", PaymentMethod);
-            writer.WriteGuidValue("productId", ProductId);
+            writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria>("criteria", Criteria);
+            writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>("intent", Intent);
             writer.WriteIntValue("quantity", Quantity);
             writer.WriteAdditionalData(AdditionalData);
         }

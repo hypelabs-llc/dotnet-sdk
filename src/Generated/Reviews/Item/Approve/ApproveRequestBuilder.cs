@@ -39,6 +39,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Reviews.Item.Approve
         /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Review"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.Review?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -49,7 +50,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Reviews.Item.Approve
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Review>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Review.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "404", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Review>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Review.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Approves a pending review so it shows publicly. Rejecting a review is a delete instead.
@@ -67,7 +72,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Reviews.Item.Approve
 #endif
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json, text/plain;q=0.9");
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>

@@ -64,10 +64,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.IpRotation
             return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.ProxyIpRotationResponse>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.ProxyIpRotationResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Configures how often the proxy rotates its IP. A delay of 0 disables rotation.
+        /// Configures how often the proxy rotates its IP. An interval of 0 disables rotation.
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Request to configure a proxy&apos;s IP rotation. An interval of 0 disables rotation.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -103,10 +103,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.IpRotation
             return requestInfo;
         }
         /// <summary>
-        /// Configures how often the proxy rotates its IP. A delay of 0 disables rotation.
+        /// Configures how often the proxy rotates its IP. An interval of 0 disables rotation.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Request to configure a proxy&apos;s IP rotation. An interval of 0 disables rotation.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

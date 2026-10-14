@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Payload to create a customer review.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CreateReviewRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The content property</summary>
+        /// <summary>Body text of the review.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Content { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Content { get; set; }
 #endif
-        /// <summary>The customAuthorName property</summary>
+        /// <summary>Display name for the reviewer, overriding the customer name or standing in for an anonymous review.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CustomAuthorName { get; set; }
@@ -30,11 +31,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string CustomAuthorName { get; set; }
 #endif
-        /// <summary>The customerId property</summary>
+        /// <summary>Identifier of the customer who left the review. Null for anonymous reviews.</summary>
         public Guid? CustomerId { get; set; }
-        /// <summary>The isFeatured property</summary>
+        /// <summary>Whether the review is highlighted (for example pinned on a landing page). Defaults to false.</summary>
         public bool? IsFeatured { get; set; }
-        /// <summary>The rating property</summary>
+        /// <summary>The star rating, from 1 to 5.</summary>
         public int? Rating { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.CreateReviewRequest"/> and sets the default values.

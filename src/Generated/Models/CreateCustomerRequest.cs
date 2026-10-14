@@ -7,10 +7,11 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Payload to create a customer (your organization&apos;s own end user).
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class CreateCustomerRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling Billing { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>Name shown for the customer in the dashboard and emails.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -30,7 +31,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The email property</summary>
+        /// <summary>Email address of the customer. Must be unique within your organization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Email { get; set; }
@@ -38,7 +39,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Email { get; set; }
 #endif
-        /// <summary>The externalId property</summary>
+        /// <summary>Identifier of the customer in your own system. Matches records across systems and makes creation idempotent.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExternalId { get; set; }
@@ -46,7 +47,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string ExternalId { get; set; }
 #endif
-        /// <summary>The locale property</summary>
+        /// <summary>Preferred locale (e.g. &quot;en&quot;, &quot;fr&quot;) for emails and OTP messages.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Locale { get; set; }
@@ -54,7 +55,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Locale { get; set; }
 #endif
-        /// <summary>The password property</summary>
+        /// <summary>Initial password of the customer, stored hashed. Omit for an OAuth-only or passwordless user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Password { get; set; }
@@ -62,7 +63,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Password { get; set; }
 #endif
-        /// <summary>The phoneNumber property</summary>
+        /// <summary>Phone number of the customer.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PhoneNumber { get; set; }
@@ -70,7 +71,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string PhoneNumber { get; set; }
 #endif
-        /// <summary>The verificationUrl property</summary>
+        /// <summary>Page (your own) linked in the verification email sent on creation, with the token appended as a query parameter. Omit to leave the email unverified and skip the email.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? VerificationUrl { get; set; }

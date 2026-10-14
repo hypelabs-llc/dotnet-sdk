@@ -7,14 +7,15 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// The credentials in effect on a proxy: the username and password to authenticate with, the IPs and domainsallowed to use it, and when they were applied. Stored in and read from Vault.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class ProxyCredentialResponse : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The allowedDomains property</summary>
+        /// <summary>Domains the proxy is permitted to reach. Empty when no domain allowlist applies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? AllowedDomains { get; set; }
@@ -22,7 +23,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public List<string> AllowedDomains { get; set; }
 #endif
-        /// <summary>The allowedIps property</summary>
+        /// <summary>IP addresses allowed to connect through the proxy. Empty when access is not restricted by IP.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? AllowedIps { get; set; }
@@ -30,9 +31,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public List<string> AllowedIps { get; set; }
 #endif
-        /// <summary>The appliedAt property</summary>
+        /// <summary>Instant these credentials were applied to the proxy in Vault.</summary>
         public DateTimeOffset? AppliedAt { get; set; }
-        /// <summary>The password property</summary>
+        /// <summary>Password used to authenticate against the proxy. Null when no credentials are stored yet.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Password { get; set; }
@@ -40,7 +41,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Password { get; set; }
 #endif
-        /// <summary>The username property</summary>
+        /// <summary>Username used to authenticate against the proxy. Null when no credentials are stored yet.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Username { get; set; }

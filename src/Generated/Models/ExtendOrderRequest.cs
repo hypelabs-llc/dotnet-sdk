@@ -7,17 +7,18 @@ using System.IO;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>
+    /// Renews an existing order for another billing cycle, optionally on different terms.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class ExtendOrderRequest : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The billingCycle property</summary>
-        public global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfBillingCycles? BillingCycle { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.BillingCycles? BillingCycle { get; set; }
         /// <summary>The paymentMethod property</summary>
-        public global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfPaymentMethods? PaymentMethod { get; set; }
+        public global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods? PaymentMethod { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.ExtendOrderRequest"/> and sets the default values.
         /// </summary>
@@ -43,8 +44,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "billingCycle", n => { BillingCycle = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfBillingCycles>(); } },
-                { "paymentMethod", n => { PaymentMethod = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfPaymentMethods>(); } },
+                { "billingCycle", n => { BillingCycle = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.BillingCycles>(); } },
+                { "paymentMethod", n => { PaymentMethod = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods>(); } },
             };
         }
         /// <summary>
@@ -54,8 +55,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfBillingCycles>("billingCycle", BillingCycle);
-            writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.NullableOfPaymentMethods>("paymentMethod", PaymentMethod);
+            writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.BillingCycles>("billingCycle", BillingCycle);
+            writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods>("paymentMethod", PaymentMethod);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
