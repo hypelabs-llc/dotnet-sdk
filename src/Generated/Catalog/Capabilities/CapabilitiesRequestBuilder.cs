@@ -22,7 +22,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Catalog.Capabilities
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CapabilitiesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/catalog/capabilities{?BillingCycle*,Capabilities*,CountryCode*,DatacenterId*,IspId*,LocationId*,PaymentMethod*,ProductId*}", pathParameters)
+        public CapabilitiesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/catalog/capabilities{?datacenterId*,ispId*,locationId*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Catalog.Capabilities
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CapabilitiesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/catalog/capabilities{?BillingCycle*,Capabilities*,CountryCode*,DatacenterId*,IspId*,LocationId*,PaymentMethod*,ProductId*}", rawUrl)
+        public CapabilitiesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/catalog/capabilities{?datacenterId*,ispId*,locationId*}", rawUrl)
         {
         }
         /// <summary>
@@ -91,65 +91,15 @@ namespace HypeLabs.Connect.Sdk.Generated.Catalog.Capabilities
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CapabilitiesRequestBuilderGetQueryParameters 
         {
-            /// <summary>Billing period of the selected price.</summary>
-            [Obsolete("This property is deprecated, use BillingCycleAsBillingCycles instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? BillingCycle { get; set; }
-#nullable restore
-#else
-            public string BillingCycle { get; set; }
-#endif
-            /// <summary>Billing period of the selected price.</summary>
-            [QueryParameter("BillingCycle")]
-            public global::HypeLabs.Connect.Sdk.Generated.Models.BillingCycles? BillingCycleAsBillingCycles { get; set; }
-            /// <summary>Capabilities the product must provide to match.</summary>
-            [Obsolete("This property is deprecated, use CapabilitiesAsCapabilityTypes instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string[]? Capabilities { get; set; }
-#nullable restore
-#else
-            public string[] Capabilities { get; set; }
-#endif
-            /// <summary>Capabilities the product must provide to match.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("Capabilities")]
-            public global::HypeLabs.Connect.Sdk.Generated.Models.CapabilityTypes[]? CapabilitiesAsCapabilityTypes { get; set; }
-#nullable restore
-#else
-            [QueryParameter("Capabilities")]
-            public global::HypeLabs.Connect.Sdk.Generated.Models.CapabilityTypes[] CapabilitiesAsCapabilityTypes { get; set; }
-#endif
-            /// <summary>ISO 3166-1 alpha-2 country code of the selected location, resolved from Guid? OrderCriteria.LocationId so a country-level price row can match. Null until resolved.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? CountryCode { get; set; }
-#nullable restore
-#else
-            public string CountryCode { get; set; }
-#endif
-            /// <summary>Identifier of the selected datacenter in the order cascade.</summary>
+            /// <summary>Narrow the stock to this datacenter (optional).</summary>
+            [QueryParameter("datacenterId")]
             public Guid? DatacenterId { get; set; }
-            /// <summary>Identifier of the selected ISP in the order cascade.</summary>
+            /// <summary>Narrow the stock to this ISP (optional).</summary>
+            [QueryParameter("ispId")]
             public Guid? IspId { get; set; }
-            /// <summary>Identifier of the selected location in the order cascade.</summary>
+            /// <summary>Narrow the stock to this location (optional).</summary>
+            [QueryParameter("locationId")]
             public Guid? LocationId { get; set; }
-            /// <summary>Payment method for the order.</summary>
-            [Obsolete("This property is deprecated, use PaymentMethodAsPaymentMethods instead")]
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public string? PaymentMethod { get; set; }
-#nullable restore
-#else
-            public string PaymentMethod { get; set; }
-#endif
-            /// <summary>Payment method for the order.</summary>
-            [QueryParameter("PaymentMethod")]
-            public global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods? PaymentMethodAsPaymentMethods { get; set; }
-            /// <summary>Identifier of the product being priced or ordered.</summary>
-            public Guid? ProductId { get; set; }
         }
         /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.

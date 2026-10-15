@@ -23,6 +23,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public Guid? Id { get; set; }
         /// <summary>Whether the current organization has hidden this option from its storefront.</summary>
         public bool? IsDisabled { get; set; }
+        /// <summary>Absolute URL of the ISP logo, null when none is set.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LogoUrl { get; set; }
+#nullable restore
+#else
+        public string LogoUrl { get; set; }
+#endif
         /// <summary>Display name of the option (ISP, datacenter, capability or product name; a location uses its city or country).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -64,6 +72,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "basePrice", n => { BasePrice = n.GetDoubleValue(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "isDisabled", n => { IsDisabled = n.GetBoolValue(); } },
+                { "logoUrl", n => { LogoUrl = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "price", n => { Price = n.GetDoubleValue(); } },
                 { "retailPrice", n => { RetailPrice = n.GetDoubleValue(); } },
@@ -80,6 +89,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteDoubleValue("basePrice", BasePrice);
             writer.WriteGuidValue("id", Id);
             writer.WriteBoolValue("isDisabled", IsDisabled);
+            writer.WriteStringValue("logoUrl", LogoUrl);
             writer.WriteStringValue("name", Name);
             writer.WriteDoubleValue("price", Price);
             writer.WriteDoubleValue("retailPrice", RetailPrice);
