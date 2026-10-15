@@ -94,7 +94,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Orders
         /// Prices the selection and records the order.
         /// </summary>
         /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.CreateOrderResponse"/></returns>
-        /// <param name="body">Order request: the same selection as a price preview, plus an optional external reference.</param>
+        /// <param name="body">Order request: the same selection as a price preview, plus whether it auto-renews.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 400 status code</exception>
@@ -142,7 +142,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Orders
         /// Prices the selection and records the order.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">Order request: the same selection as a price preview, plus an optional external reference.</param>
+        /// <param name="body">Order request: the same selection as a price preview, plus whether it auto-renews.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -23,6 +23,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria Criteria { get; set; }
 #endif
+        /// <summary>The organization&apos;s end customer this order is for. Required for a retail order (it bills that customer on    the organization&apos;s connected account); must be null for wholesale (the organization itself is billed).</summary>
+        public Guid? CustomerId { get; set; }
         /// <summary>The intent property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents? Intent { get; set; }
         /// <summary>Number of units to order. Defaults to 1.</summary>
@@ -53,6 +55,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "criteria", n => { Criteria = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria>(global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria.CreateFromDiscriminatorValue); } },
+                { "customerId", n => { CustomerId = n.GetGuidValue(); } },
                 { "intent", n => { Intent = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>(); } },
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
             };
@@ -65,6 +68,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria>("criteria", Criteria);
+            writer.WriteGuidValue("customerId", CustomerId);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>("intent", Intent);
             writer.WriteIntValue("quantity", Quantity);
             writer.WriteAdditionalData(AdditionalData);

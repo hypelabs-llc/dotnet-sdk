@@ -25,7 +25,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public Guid? Id { get; set; }
         /// <summary>Why the order was placed: wholesale (the organization buying for itself, on our platform account) or    retail (reselling to its own customer, on its connected account). Persisted so later actions — cancellation,    refund — resolve the same Stripe account the order settled on, instead of re-deriving it from the request.</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents? Intent { get; set; }
-        /// <summary>Whether the order still holds its proxies: live in any state other than expired.</summary>
+        /// <summary>Whether the order is still live and holding its proxies: Active, or in its post-expiry grace window.    Every other state (pending, provisioning, expired, deleted) does not.</summary>
         public bool? IsActive { get; set; }
         /// <summary>Recurring subscription (true) or one-shot payment (false). Does not drive expiry: it sets what the    customer is told and lets reconciliation skip one-shot orders.</summary>
         public bool? IsAutoRenew { get; set; }
@@ -38,6 +38,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #nullable restore
 #else
         public List<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem> Items { get; set; }
+#endif
+        /// <summary>Reference of the last settlement already applied to this order, provider-prefixed (e.g.    `stripe:in_...`, `nowpayments:...`). Webhooks are delivered at least once, so a renewal that carries    this same reference has already been applied and is skipped, keeping a redelivered payment from adding a cycle    twice. Provider-agnostic so it covers every settlement source, current and future.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? LastSettlementReference { get; set; }
+#nullable restore
+#else
+        public string LastSettlementReference { get; set; }
 #endif
         /// <summary>The metadata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -97,6 +105,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "isAutoRenew", n => { IsAutoRenew = n.GetBoolValue(); } },
                 { "isTrial", n => { IsTrial = n.GetBoolValue(); } },
                 { "items", n => { Items = n.GetCollectionOfObjectValues<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem>(global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "lastSettlementReference", n => { LastSettlementReference = n.GetStringValue(); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata>(global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata.CreateFromDiscriminatorValue); } },
                 { "paymentMethod", n => { PaymentMethod = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods>(); } },
                 { "paymentProcessor", n => { PaymentProcessor = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentProcessors>(); } },
@@ -121,6 +130,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteBoolValue("isAutoRenew", IsAutoRenew);
             writer.WriteBoolValue("isTrial", IsTrial);
             writer.WriteCollectionOfObjectValues<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem>("items", Items);
+            writer.WriteStringValue("lastSettlementReference", LastSettlementReference);
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata>("metadata", Metadata);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods>("paymentMethod", PaymentMethod);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentProcessors>("paymentProcessor", PaymentProcessor);

@@ -27,5 +27,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         #pragma warning disable CS1591
         Expired,
         #pragma warning restore CS1591
+        [EnumMember(Value = "Deleted")]
+        #pragma warning disable CS1591
+        Deleted,
+        #pragma warning restore CS1591
     }
 }

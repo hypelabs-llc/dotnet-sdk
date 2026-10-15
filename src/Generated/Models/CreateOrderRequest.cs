@@ -8,21 +8,13 @@ using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
     /// <summary>
-    /// Order request: the same selection as a price preview, plus an optional external reference.
+    /// Order request: the same selection as a price preview, plus whether it auto-renews.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreateOrderRequest : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Caller-side reference tying the order to an external record (order id, purchase id). Null when unused.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ConsumerRef { get; set; }
-#nullable restore
-#else
-        public string ConsumerRef { get; set; }
-#endif
         /// <summary>Priced selection the order is placed against.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,6 +23,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria Criteria { get; set; }
 #endif
+        /// <summary>The organization&apos;s end customer this order is for. Required for a retail order (it bills that customer on    the organization&apos;s connected account); must be null for wholesale (the organization itself is billed).</summary>
+        public Guid? CustomerId { get; set; }
         /// <summary>The intent property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents? Intent { get; set; }
         /// <summary>Whether the order renews itself for another billing cycle at expiry instead of lapsing. Defaults to false.</summary>
@@ -62,8 +56,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "consumerRef", n => { ConsumerRef = n.GetStringValue(); } },
                 { "criteria", n => { Criteria = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria>(global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria.CreateFromDiscriminatorValue); } },
+                { "customerId", n => { CustomerId = n.GetGuidValue(); } },
                 { "intent", n => { Intent = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>(); } },
                 { "isAutoRenew", n => { IsAutoRenew = n.GetBoolValue(); } },
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
@@ -76,8 +70,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("consumerRef", ConsumerRef);
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria>("criteria", Criteria);
+            writer.WriteGuidValue("customerId", CustomerId);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>("intent", Intent);
             writer.WriteBoolValue("isAutoRenew", IsAutoRenew);
             writer.WriteIntValue("quantity", Quantity);
