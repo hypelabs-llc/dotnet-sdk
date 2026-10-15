@@ -60,7 +60,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Orders
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public OrdersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/orders", pathParameters)
+        public OrdersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/orders{?customerId*,intent*,trial*}", pathParameters)
         {
         }
         /// <summary>
@@ -68,22 +68,22 @@ namespace HypeLabs.Connect.Sdk.Generated.Orders
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public OrdersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/orders", rawUrl)
+        public OrdersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/orders{?customerId*,intent*,trial*}", rawUrl)
         {
         }
         /// <summary>
-        /// Lists your active orders. Filterable by status, billing cycle, payment method, trial flag, and a free-text search across all of an order&apos;s fields.
+        /// Lists your active orders. Filterable by status, billing cycle, payment method, trial flag, intent (wholesale/retail), customer id, and a free-text search across all of an order&apos;s fields.
         /// </summary>
         /// <returns>A List&lt;global::HypeLabs.Connect.Sdk.Generated.Models.Order&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Order>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Order>?> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Order>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Order>> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -120,17 +120,17 @@ namespace HypeLabs.Connect.Sdk.Generated.Orders
             return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.CreateOrderResponse>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.CreateOrderResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Lists your active orders. Filterable by status, billing cycle, payment method, trial flag, and a free-text search across all of an order&apos;s fields.
+        /// Lists your active orders. Filterable by status, billing cycle, payment method, trial flag, intent (wholesale/retail), customer id, and a free-text search across all of an order&apos;s fields.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -170,11 +170,48 @@ namespace HypeLabs.Connect.Sdk.Generated.Orders
             return new global::HypeLabs.Connect.Sdk.Generated.Orders.OrdersRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
+        /// Lists your active orders. Filterable by status, billing cycle, payment method, trial flag, intent (wholesale/retail), customer id, and a free-text search across all of an order&apos;s fields.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class OrdersRequestBuilderGetQueryParameters 
+        {
+            /// <summary>Filter by the customer the order belongs to.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("customerId")]
+            public string? CustomerId { get; set; }
+#nullable restore
+#else
+            [QueryParameter("customerId")]
+            public string CustomerId { get; set; }
+#endif
+            /// <summary>Filter by order intent (wholesale or retail).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("intent")]
+            public string? Intent { get; set; }
+#nullable restore
+#else
+            [QueryParameter("intent")]
+            public string Intent { get; set; }
+#endif
+            /// <summary>Filter by trial flag.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("trial")]
+            public string? Trial { get; set; }
+#nullable restore
+#else
+            [QueryParameter("trial")]
+            public string Trial { get; set; }
+#endif
+        }
+        /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
         [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class OrdersRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        public partial class OrdersRequestBuilderGetRequestConfiguration : RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Orders.OrdersRequestBuilder.OrdersRequestBuilderGetQueryParameters>
         {
         }
         /// <summary>

@@ -48,7 +48,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public IncidentsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/incidents", pathParameters)
+        public IncidentsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/incidents{?reporter*,status*}", pathParameters)
         {
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public IncidentsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/incidents", rawUrl)
+        public IncidentsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/incidents{?reporter*,status*}", rawUrl)
         {
         }
         /// <summary>
@@ -67,11 +67,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>?> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Incidents.IncidentsRequestBuilder.IncidentsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Incident>> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Incidents.IncidentsRequestBuilder.IncidentsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -110,11 +110,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Incidents.IncidentsRequestBuilder.IncidentsRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Incidents.IncidentsRequestBuilder.IncidentsRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -154,11 +154,38 @@ namespace HypeLabs.Connect.Sdk.Generated.Incidents
             return new global::HypeLabs.Connect.Sdk.Generated.Incidents.IncidentsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
+        /// Returns the incidents reported for your organization, most recent first.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class IncidentsRequestBuilderGetQueryParameters 
+        {
+            /// <summary>Filter by reporter email.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("reporter")]
+            public string? Reporter { get; set; }
+#nullable restore
+#else
+            [QueryParameter("reporter")]
+            public string Reporter { get; set; }
+#endif
+            /// <summary>Filter by incident status.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("status")]
+            public string? Status { get; set; }
+#nullable restore
+#else
+            [QueryParameter("status")]
+            public string Status { get; set; }
+#endif
+        }
+        /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
         [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class IncidentsRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        public partial class IncidentsRequestBuilderGetRequestConfiguration : RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Incidents.IncidentsRequestBuilder.IncidentsRequestBuilderGetQueryParameters>
         {
         }
         /// <summary>

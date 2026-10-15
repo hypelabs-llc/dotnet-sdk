@@ -54,7 +54,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Customers
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CustomersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/customers", pathParameters)
+        public CustomersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/customers{?active*,country*,emailVerified*}", pathParameters)
         {
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Customers
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public CustomersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/customers", rawUrl)
+        public CustomersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/customers{?active*,country*,emailVerified*}", rawUrl)
         {
         }
         /// <summary>
@@ -73,11 +73,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Customers
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Customer>?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Customer>?> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Customers.CustomersRequestBuilder.CustomersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Customer>> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Customer>> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Customers.CustomersRequestBuilder.CustomersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -116,11 +116,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Customers
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Customers.CustomersRequestBuilder.CustomersRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Customers.CustomersRequestBuilder.CustomersRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -160,11 +160,48 @@ namespace HypeLabs.Connect.Sdk.Generated.Customers
             return new global::HypeLabs.Connect.Sdk.Generated.Customers.CustomersRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
+        /// Returns your organization&apos;s customers, most recent first. Filterable by active state, email-verified state, KYC approval, and a free-text search across all of a customer&apos;s fields.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class CustomersRequestBuilderGetQueryParameters 
+        {
+            /// <summary>Filter by active state.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("active")]
+            public string? Active { get; set; }
+#nullable restore
+#else
+            [QueryParameter("active")]
+            public string Active { get; set; }
+#endif
+            /// <summary>Filter by ISO 3166-1 alpha-2 country code.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("country")]
+            public string? Country { get; set; }
+#nullable restore
+#else
+            [QueryParameter("country")]
+            public string Country { get; set; }
+#endif
+            /// <summary>Filter by email-verified state.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("emailVerified")]
+            public string? EmailVerified { get; set; }
+#nullable restore
+#else
+            [QueryParameter("emailVerified")]
+            public string EmailVerified { get; set; }
+#endif
+        }
+        /// <summary>
         /// Configuration for the request such as headers, query parameters, and middleware options.
         /// </summary>
         [Obsolete("This class is deprecated. Please use the generic RequestConfiguration class generated by the generator.")]
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class CustomersRequestBuilderGetRequestConfiguration : RequestConfiguration<DefaultQueryParameters>
+        public partial class CustomersRequestBuilderGetRequestConfiguration : RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Customers.CustomersRequestBuilder.CustomersRequestBuilderGetQueryParameters>
         {
         }
         /// <summary>
