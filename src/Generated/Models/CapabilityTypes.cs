@@ -3,10 +3,9 @@ using System.Runtime.Serialization;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
+    /// <summary>Which capability this option is (e.g. IPv6, IP scoring).</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public enum CapabilityTypes
-    #pragma warning restore CS1591
     {
         [EnumMember(Value = "IpScore")]
         #pragma warning disable CS1591
