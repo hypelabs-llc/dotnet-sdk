@@ -3,7 +3,9 @@
 using HypeLabs.Connect.Sdk.Generated.Models;
 using HypeLabs.Connect.Sdk.Generated.Proxies.Item.Annotations;
 using HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials;
+using HypeLabs.Connect.Sdk.Generated.Proxies.Item.IpInfo;
 using HypeLabs.Connect.Sdk.Generated.Proxies.Item.IpRotation;
+using HypeLabs.Connect.Sdk.Generated.Proxies.Item.Options;
 using HypeLabs.Connect.Sdk.Generated.Proxies.Item.Ping;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -31,10 +33,20 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item
         {
             get => new global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Credentials.CredentialsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The ipInfo property</summary>
+        public global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.IpInfo.IpInfoRequestBuilder IpInfo
+        {
+            get => new global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.IpInfo.IpInfoRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The ipRotation property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.IpRotation.IpRotationRequestBuilder IpRotation
         {
             get => new global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.IpRotation.IpRotationRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The optionsPath property</summary>
+        public global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Options.OptionsRequestBuilder OptionsPath
+        {
+            get => new global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Options.OptionsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The ping property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Proxies.Item.Ping.PingRequestBuilder Ping
@@ -63,7 +75,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item
         /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Proxy"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 404 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.Proxy?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -74,11 +85,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "404", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
-            };
-            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Proxy>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Proxy.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Proxy>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Proxy.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns one of your proxies with its connection details.
@@ -96,7 +103,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.Headers.TryAdd("Accept", "application/json, text/plain;q=0.9");
             return requestInfo;
         }
         /// <summary>

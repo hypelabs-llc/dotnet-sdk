@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using HypeLabs.Connect.Sdk.Generated.Models;
 using HypeLabs.Connect.Sdk.Generated.Orders.Item.Extend;
+using HypeLabs.Connect.Sdk.Generated.Orders.Item.Proxies;
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -22,6 +23,11 @@ namespace HypeLabs.Connect.Sdk.Generated.Orders.Item
         public global::HypeLabs.Connect.Sdk.Generated.Orders.Item.Extend.ExtendRequestBuilder Extend
         {
             get => new global::HypeLabs.Connect.Sdk.Generated.Orders.Item.Extend.ExtendRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The proxies property</summary>
+        public global::HypeLabs.Connect.Sdk.Generated.Orders.Item.Proxies.ProxiesRequestBuilder Proxies
+        {
+            get => new global::HypeLabs.Connect.Sdk.Generated.Orders.Item.Proxies.ProxiesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Orders.Item.OrdersItemRequestBuilder"/> and sets the default values.

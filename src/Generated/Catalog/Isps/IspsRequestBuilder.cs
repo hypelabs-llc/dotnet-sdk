@@ -40,7 +40,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Catalog.Isps
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 404 status code</exception>
-        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Isp>?> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Catalog.Isps.IspsRequestBuilder.IspsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -54,7 +53,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Catalog.Isps
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "404", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
-                { "503", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
             };
             var collectionResult = await RequestAdapter.SendCollectionAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Isp>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Isp.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();

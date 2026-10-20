@@ -39,7 +39,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.Ping
         /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.ProxyPingResponse"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 404 status code</exception>
         /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 422 status code</exception>
         /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,7 +53,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Proxies.Item.Ping
             var requestInfo = ToPostRequestInformation(requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "404", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
                 { "422", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
                 { "500", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
             };

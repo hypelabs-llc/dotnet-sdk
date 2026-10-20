@@ -25,6 +25,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #endif
         /// <summary>The organization&apos;s end customer this order is for. Required for a retail order (it bills that customer on    the organization&apos;s connected account); must be null for wholesale (the organization itself is billed).</summary>
         public Guid? CustomerId { get; set; }
+        /// <summary>Your own reference for this order, unique within your organization. Attach it to make creation    idempotent: a request that times out can be safely retried with the same reference and returns the order that    was already placed instead of creating a duplicate. Optional.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExternalReference { get; set; }
+#nullable restore
+#else
+        public string ExternalReference { get; set; }
+#endif
         /// <summary>The intent property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents? Intent { get; set; }
         /// <summary>Whether the order renews itself for another billing cycle at expiry instead of lapsing. Defaults to false.</summary>
@@ -58,6 +66,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             {
                 { "criteria", n => { Criteria = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria>(global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria.CreateFromDiscriminatorValue); } },
                 { "customerId", n => { CustomerId = n.GetGuidValue(); } },
+                { "externalReference", n => { ExternalReference = n.GetStringValue(); } },
                 { "intent", n => { Intent = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>(); } },
                 { "isAutoRenew", n => { IsAutoRenew = n.GetBoolValue(); } },
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
@@ -72,6 +81,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderCriteria>("criteria", Criteria);
             writer.WriteGuidValue("customerId", CustomerId);
+            writer.WriteStringValue("externalReference", ExternalReference);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>("intent", Intent);
             writer.WriteBoolValue("isAutoRenew", IsAutoRenew);
             writer.WriteIntValue("quantity", Quantity);

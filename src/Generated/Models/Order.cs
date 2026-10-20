@@ -21,6 +21,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public Guid? CustomerId { get; set; }
         /// <summary>When the order expires. Persisted so the status can be computed from it without a background worker.</summary>
         public DateTimeOffset? ExpiresAt { get; set; }
+        /// <summary>The caller&apos;s own reference for this order, unique within its organization when set. Makes creation    idempotent: a retry with the same reference returns this order instead of placing a duplicate.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExternalReference { get; set; }
+#nullable restore
+#else
+        public string ExternalReference { get; set; }
+#endif
         /// <summary>The id property</summary>
         public Guid? Id { get; set; }
         /// <summary>Why the order was placed: wholesale (the organization buying for itself, on our platform account) or    retail (reselling to its own customer, on its connected account). Persisted so later actions — cancellation,    refund — resolve the same Stripe account the order settled on, instead of re-deriving it from the request.</summary>
@@ -29,6 +37,10 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public bool? IsActive { get; set; }
         /// <summary>Recurring subscription (true) or one-shot payment (false). Does not drive expiry: it sets what the    customer is told and lets reconciliation skip one-shot orders.</summary>
         public bool? IsAutoRenew { get; set; }
+        /// <summary>Whether the order needs attention soon: in its grace period, or expiring within a week. An    auto-renewing order is never flagged, as it renews itself rather than lapsing, and neither is a trial, which    is meant to expire.</summary>
+        public bool? IsExpiringSoon { get; set; }
+        /// <summary>Whether the order no longer holds its proxies, having handed them back to the stock for a new order:    once it is Expired or Deleted. The counterpart of bool Order.IsActive for stock; a never-provisioned order    (Pending, Provisioning) sits between the two and frees nothing.</summary>
+        public bool? IsInactive { get; set; }
         /// <summary>Whether the order is a trial.</summary>
         public bool? IsTrial { get; set; }
         /// <summary>Line items the order is made of, one per product bought. Each item carries its product, quantity and    the resources delivered for it.</summary>
@@ -99,10 +111,13 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "billingCycle", n => { BillingCycle = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.BillingCycles>(); } },
                 { "customerId", n => { CustomerId = n.GetGuidValue(); } },
                 { "expiresAt", n => { ExpiresAt = n.GetDateTimeOffsetValue(); } },
+                { "externalReference", n => { ExternalReference = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "intent", n => { Intent = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>(); } },
                 { "isActive", n => { IsActive = n.GetBoolValue(); } },
                 { "isAutoRenew", n => { IsAutoRenew = n.GetBoolValue(); } },
+                { "isExpiringSoon", n => { IsExpiringSoon = n.GetBoolValue(); } },
+                { "isInactive", n => { IsInactive = n.GetBoolValue(); } },
                 { "isTrial", n => { IsTrial = n.GetBoolValue(); } },
                 { "items", n => { Items = n.GetCollectionOfObjectValues<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem>(global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lastSettlementReference", n => { LastSettlementReference = n.GetStringValue(); } },
@@ -124,10 +139,13 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.BillingCycles>("billingCycle", BillingCycle);
             writer.WriteGuidValue("customerId", CustomerId);
             writer.WriteDateTimeOffsetValue("expiresAt", ExpiresAt);
+            writer.WriteStringValue("externalReference", ExternalReference);
             writer.WriteGuidValue("id", Id);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>("intent", Intent);
             writer.WriteBoolValue("isActive", IsActive);
             writer.WriteBoolValue("isAutoRenew", IsAutoRenew);
+            writer.WriteBoolValue("isExpiringSoon", IsExpiringSoon);
+            writer.WriteBoolValue("isInactive", IsInactive);
             writer.WriteBoolValue("isTrial", IsTrial);
             writer.WriteCollectionOfObjectValues<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem>("items", Items);
             writer.WriteStringValue("lastSettlementReference", LastSettlementReference);

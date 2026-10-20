@@ -15,6 +15,22 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Domains the customer&apos;s proxies authorize by default. Empty means no domain restriction set here;    `*` allows all.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AllowedDomains { get; set; }
+#nullable restore
+#else
+        public List<string> AllowedDomains { get; set; }
+#endif
+        /// <summary>IP addresses the customer&apos;s proxies authorize by default. Empty means no IP restriction set here.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AllowedIps { get; set; }
+#nullable restore
+#else
+        public List<string> AllowedIps { get; set; }
+#endif
         /// <summary>The user&apos;s Gravatar avatar URL, derived from their email (falls back to a neutral silhouette    when the address has no Gravatar). Computed, not stored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -160,6 +176,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "allowedDomains", n => { AllowedDomains = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "allowedIps", n => { AllowedIps = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "avatarUrl", n => { AvatarUrl = n.GetStringValue(); } },
                 { "bannedAt", n => { BannedAt = n.GetDateTimeOffsetValue(); } },
                 { "billing", n => { Billing = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling>(global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling.CreateFromDiscriminatorValue); } },
@@ -190,6 +208,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfPrimitiveValues<string>("allowedDomains", AllowedDomains);
+            writer.WriteCollectionOfPrimitiveValues<string>("allowedIps", AllowedIps);
             writer.WriteStringValue("avatarUrl", AvatarUrl);
             writer.WriteDateTimeOffsetValue("bannedAt", BannedAt);
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerBilling>("billing", Billing);

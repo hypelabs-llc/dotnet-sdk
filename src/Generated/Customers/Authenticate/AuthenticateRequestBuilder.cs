@@ -53,7 +53,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Customers.Authenticate
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 401 status code</exception>
-        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 403 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerAuthResponse?> PostAsync(global::HypeLabs.Connect.Sdk.Generated.Models.AuthenticateCustomerRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -68,7 +67,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Customers.Authenticate
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "401", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
-                { "403", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::HypeLabs.Connect.Sdk.Generated.Models.CustomerAuthResponse>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.CustomerAuthResponse.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

@@ -39,7 +39,6 @@ namespace HypeLabs.Connect.Sdk.Generated.Catalog.Products
         /// <returns>A List&lt;global::HypeLabs.Connect.Sdk.Generated.Models.Product&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse">When receiving a 503 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<List<global::HypeLabs.Connect.Sdk.Generated.Models.Product>?> GetAsync(Action<RequestConfiguration<global::HypeLabs.Connect.Sdk.Generated.Catalog.Products.ProductsRequestBuilder.ProductsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -50,11 +49,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Catalog.Products
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
-            {
-                { "503", global::HypeLabs.Connect.Sdk.Generated.Models.ApiResponse.CreateFromDiscriminatorValue },
-            };
-            var collectionResult = await RequestAdapter.SendCollectionAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Product>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Product.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::HypeLabs.Connect.Sdk.Generated.Models.Product>(requestInfo, global::HypeLabs.Connect.Sdk.Generated.Models.Product.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
         /// <summary>
@@ -73,7 +68,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Catalog.Products
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
-            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9");
             return requestInfo;
         }
         /// <summary>
