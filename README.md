@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://i.imgur.com/NtKvmk2.png" height="100" alt="HypeLabs" />
+  <img src="https://hypelabs.llc/logo.png" height="100" alt="HypeLabs" />
 </p>
 <h3 align="center">
   HypeLabs Connect SDK
