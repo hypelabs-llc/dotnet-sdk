@@ -5,7 +5,7 @@
   HypeLabs Connect SDK
 </h3>
 <p align="center">
-  The C# client for the HypeLabs Connect API, for internal .NET services. 🚀
+  The C# client for the HypeLabs Connect API.
 </p>
 <p align="center">
   <a href="https://www.nuget.org/packages/HypeLabs.Connect.Sdk"><img src="https://img.shields.io/nuget/v/HypeLabs.Connect.Sdk?color=512bd4&label=NuGet" /></a>
@@ -28,7 +28,7 @@
    dotnet add package HypeLabs.Connect.Sdk
    ```
 
-2. **Create your organization** on the [HypeLabs Console](https://console.hypelabs.network/) and generate an API key.
+2. **Create your organization** on the [HypeLabs Console](https://console.hypelabs.network/?utm_source=github&utm_medium=readme&utm_campaign=dotnet-sdk) and generate an API key.
 
 ## Usage
 
