@@ -23,9 +23,12 @@ public sealed class ConnectClient : ConnectApiClient
     /// Prefer <c>AddConnectClient</c> in a DI-based app so the HTTP handler is pooled by the factory.
     /// </summary>
     /// <param name="apiKey">A Connect API key (e.g. <c>hl_live_…</c>).</param>
-    public ConnectClient(string apiKey)
+    /// <param name="baseUrl">Optional API base URL; leave null to use the SDK default.</param>
+    public ConnectClient(string apiKey, string? baseUrl = null)
         : base(new HttpClientRequestAdapter(new ApiKeyAuthenticationProvider(NotEmpty(apiKey))))
     {
+        if (!string.IsNullOrWhiteSpace(baseUrl))
+            RequestAdapter.BaseUrl = baseUrl;
     }
 
     /// <summary>
