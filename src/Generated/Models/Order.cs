@@ -59,6 +59,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string LastSettlementReference { get; set; }
 #endif
+        /// <summary>The `BalanceTransaction` that last paid this order from the organization&apos;s balance (its creation or    its most recent extension). Lets a refund credit back exactly that payment without re-deriving its amount. Null    for orders paid through a processor (Stripe, crypto) or for trials.</summary>
+        public Guid? LastTransactionId { get; set; }
         /// <summary>The metadata property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -121,6 +123,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "isTrial", n => { IsTrial = n.GetBoolValue(); } },
                 { "items", n => { Items = n.GetCollectionOfObjectValues<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem>(global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lastSettlementReference", n => { LastSettlementReference = n.GetStringValue(); } },
+                { "lastTransactionId", n => { LastTransactionId = n.GetGuidValue(); } },
                 { "metadata", n => { Metadata = n.GetObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata>(global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata.CreateFromDiscriminatorValue); } },
                 { "paymentMethod", n => { PaymentMethod = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods>(); } },
                 { "paymentProcessor", n => { PaymentProcessor = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentProcessors>(); } },
@@ -149,6 +152,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteBoolValue("isTrial", IsTrial);
             writer.WriteCollectionOfObjectValues<global::HypeLabs.Connect.Sdk.Generated.Models.OrderItem>("items", Items);
             writer.WriteStringValue("lastSettlementReference", LastSettlementReference);
+            writer.WriteGuidValue("lastTransactionId", LastTransactionId);
             writer.WriteObjectValue<global::HypeLabs.Connect.Sdk.Generated.Models.Order_metadata>("metadata", Metadata);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods>("paymentMethod", PaymentMethod);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.PaymentProcessors>("paymentProcessor", PaymentProcessor);

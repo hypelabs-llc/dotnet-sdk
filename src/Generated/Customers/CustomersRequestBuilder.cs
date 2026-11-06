@@ -85,7 +85,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Customers
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Creates a customer for your organization.
+        /// Creates a customer for your organization. Anonymous: the organization is named by the X-Organization-Id header, so your app can sign a new end user up without an API key.
         /// </summary>
         /// <returns>A <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.Customer"/></returns>
         /// <param name="body">Payload to create a customer (your organization&apos;s own end user).</param>
@@ -129,7 +129,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Customers
             return requestInfo;
         }
         /// <summary>
-        /// Creates a customer for your organization.
+        /// Creates a customer for your organization. Anonymous: the organization is named by the X-Organization-Id header, so your app can sign a new end user up without an API key.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Payload to create a customer (your organization&apos;s own end user).</param>

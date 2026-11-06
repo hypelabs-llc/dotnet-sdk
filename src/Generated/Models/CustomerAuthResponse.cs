@@ -41,8 +41,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #endif
         /// <summary>Instant the access token stops being valid.</summary>
         public DateTimeOffset? ExpiresAt { get; set; }
-        /// <summary>Whether the customer is banned (suspended). False for an active account.</summary>
-        public bool? IsBanned { get; set; }
+        /// <summary>Whether the customer&apos;s account is active. False when the account has been suspended.</summary>
+        public bool? IsActive { get; set; }
         /// <summary>The customer&apos;s preferred locale (e.g. `en-US`), when set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -90,7 +90,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "avatar", n => { Avatar = n.GetStringValue(); } },
                 { "email", n => { Email = n.GetStringValue(); } },
                 { "expiresAt", n => { ExpiresAt = n.GetDateTimeOffsetValue(); } },
-                { "isBanned", n => { IsBanned = n.GetBoolValue(); } },
+                { "isActive", n => { IsActive = n.GetBoolValue(); } },
                 { "locale", n => { Locale = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "userId", n => { UserId = n.GetGuidValue(); } },
@@ -107,7 +107,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteStringValue("avatar", Avatar);
             writer.WriteStringValue("email", Email);
             writer.WriteDateTimeOffsetValue("expiresAt", ExpiresAt);
-            writer.WriteBoolValue("isBanned", IsBanned);
+            writer.WriteBoolValue("isActive", IsActive);
             writer.WriteStringValue("locale", Locale);
             writer.WriteStringValue("name", Name);
             writer.WriteGuidValue("userId", UserId);

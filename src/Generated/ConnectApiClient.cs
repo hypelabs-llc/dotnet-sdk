@@ -5,6 +5,7 @@ using HypeLabs.Connect.Sdk.Generated.Catalog;
 using HypeLabs.Connect.Sdk.Generated.Customers;
 using HypeLabs.Connect.Sdk.Generated.Incidents;
 using HypeLabs.Connect.Sdk.Generated.Orders;
+using HypeLabs.Connect.Sdk.Generated.Organizations;
 using HypeLabs.Connect.Sdk.Generated.Proxies;
 using HypeLabs.Connect.Sdk.Generated.Reviews;
 using Microsoft.Kiota.Abstractions.Extensions;
@@ -49,6 +50,11 @@ namespace HypeLabs.Connect.Sdk.Generated
         public global::HypeLabs.Connect.Sdk.Generated.Orders.OrdersRequestBuilder Orders
         {
             get => new global::HypeLabs.Connect.Sdk.Generated.Orders.OrdersRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The organizations property</summary>
+        public global::HypeLabs.Connect.Sdk.Generated.Organizations.OrganizationsRequestBuilder Organizations
+        {
+            get => new global::HypeLabs.Connect.Sdk.Generated.Organizations.OrganizationsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The proxies property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Proxies.ProxiesRequestBuilder Proxies
