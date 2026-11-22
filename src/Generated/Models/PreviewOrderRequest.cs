@@ -29,6 +29,8 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents? Intent { get; set; }
         /// <summary>Number of units to order. Defaults to 1.</summary>
         public int? Quantity { get; set; }
+        /// <summary>Prices the selection without requiring any proxy to be in stock for it. The preview returns a price    even when nothing is currently available; it does not reserve or guarantee stock.</summary>
+        public bool? SkipStockCheck { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::HypeLabs.Connect.Sdk.Generated.Models.PreviewOrderRequest"/> and sets the default values.
         /// </summary>
@@ -58,6 +60,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "customerId", n => { CustomerId = n.GetGuidValue(); } },
                 { "intent", n => { Intent = n.GetEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>(); } },
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
+                { "skipStockCheck", n => { SkipStockCheck = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -71,6 +74,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteGuidValue("customerId", CustomerId);
             writer.WriteEnumValue<global::HypeLabs.Connect.Sdk.Generated.Models.OrderIntents>("intent", Intent);
             writer.WriteIntValue("quantity", Quantity);
+            writer.WriteBoolValue("skipStockCheck", SkipStockCheck);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -55,6 +55,14 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
 #else
         public string Domain { get; set; }
 #endif
+        /// <summary>Intercom app id for the store&apos;s live chat.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? IntercomAppId { get; set; }
+#nullable restore
+#else
+        public string IntercomAppId { get; set; }
+#endif
         /// <summary>Store name shown to customers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -121,6 +129,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
                 { "customJs", n => { CustomJs = n.GetStringValue(); } },
                 { "documentationMd", n => { DocumentationMd = n.GetStringValue(); } },
                 { "domain", n => { Domain = n.GetStringValue(); } },
+                { "intercomAppId", n => { IntercomAppId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "showDocumentationTab", n => { ShowDocumentationTab = n.GetBoolValue(); } },
                 { "showReviewsTab", n => { ShowReviewsTab = n.GetBoolValue(); } },
@@ -141,6 +150,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
             writer.WriteStringValue("customJs", CustomJs);
             writer.WriteStringValue("documentationMd", DocumentationMd);
             writer.WriteStringValue("domain", Domain);
+            writer.WriteStringValue("intercomAppId", IntercomAppId);
             writer.WriteStringValue("name", Name);
             writer.WriteBoolValue("showDocumentationTab", ShowDocumentationTab);
             writer.WriteBoolValue("showReviewsTab", ShowReviewsTab);

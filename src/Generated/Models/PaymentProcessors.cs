@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace HypeLabs.Connect.Sdk.Generated.Models
 {
-    /// <summary>Processor that settles the order (Stripe, Heleket). Selects the webhook and reconciliation path that    keeps it alive. Null for a trial (nothing to settle).</summary>
+    /// <summary>Processor that settles the order (Stripe, NOWPayments). Selects the webhook and reconciliation path that    keeps it alive. Null for a trial (nothing to settle).</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PaymentProcessors
     {
@@ -11,9 +11,9 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         #pragma warning disable CS1591
         None,
         #pragma warning restore CS1591
-        [EnumMember(Value = "Heleket")]
+        [EnumMember(Value = "NowPayments")]
         #pragma warning disable CS1591
-        Heleket,
+        NowPayments,
         #pragma warning restore CS1591
         [EnumMember(Value = "Stripe")]
         #pragma warning disable CS1591

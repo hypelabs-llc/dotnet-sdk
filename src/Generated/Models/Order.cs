@@ -73,7 +73,7 @@ namespace HypeLabs.Connect.Sdk.Generated.Models
         public global::HypeLabs.Connect.Sdk.Generated.Models.PaymentMethods? PaymentMethod { get; set; }
         /// <summary>The paymentProcessor property</summary>
         public global::HypeLabs.Connect.Sdk.Generated.Models.PaymentProcessors? PaymentProcessor { get; set; }
-        /// <summary>Opaque handle at the processor (a Stripe `sub_...` or `pi_...`, a Heleket reference).</summary>
+        /// <summary>Opaque handle at the processor (a Stripe `sub_...` or `pi_...`, a NOWPayments payment id).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ProcessorReference { get; set; }
